@@ -1,6 +1,7 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    --paper:#ffffff;
     --cream: #FDF8F4;
     --peach-light: #F9CAAE;
     --peach-mid: #F4A776;
@@ -10,6 +11,7 @@
     --teal-dark: #1A587F;
     --teal-mid: #1C5B82;
     --coral: #D4684B;
+    --ink:#211a14;
     --text-dark: #1A1A18;
     --text-mid: #4A4A45;
     --text-light: #8A8A82;
