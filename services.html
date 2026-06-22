@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Servicios — Rosina Peñaranda</title>
+<link rel="stylesheet" href="./styles/header.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#15242e;
+    --ink-soft:#5b6a72;
+    --line:#eceae6;
+    --text-dark: #1A1A18;
+    --gold:#fdcd0d;
+    --olive:#987a01;
+    --tan:#e39b48;
+    --blue-deep:#1a587f;
+    --teal:#1c5b82;
+    --teal-dark: #1A587F;
+    --terracotta:#d4684b;
+    --coral:#ee7d57;
+    --salmon:#e99477;
+    --peach:#f4a776;
+    --peach-light:#f9caae;
+
+    --font-display:'Bricolage Grotesque', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'Space Mono', monospace;
+    
+    --ink-soft:rgba(33,26,20,0.64);
+    --ink-faint:rgba(33,26,20,0.42);
+    --sun:#fdcd0d;
+    --line:rgba(33,26,20,0.10);
+    --teal-deep:#1a587f;
+    --teal:#1c5b82;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  .wrap{max-width:2000px;margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{ padding-inline: clamp(1.5rem, 6vw, 6rem); }
+  .eyebrow{
+    font-family:var(--font-mono);
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.72rem;
+    color:var(--ink-soft);
+  }
+  .eyebrow span{
+    display:inline-block;
+    width:1.4rem; height:2px;
+    background:var(--gold);
+    vertical-align:middle;
+    margin-right:.6rem;
+  }
+  /* ---------- NAV ----------- */
+    .nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:rgba(255,255,255,0);
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+  }
+  .nav.is-scrolled{
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--line);
+    padding:14px 32px;
+  }
+  .brand{font-family:'Fraunces', serif;font-weight:600;font-size:1.05rem;letter-spacing:-0.01em;}
+  .nav-links{display:flex;gap:32px;font-size:0.94rem;font-weight:600;}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+    background:var(--coral);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{font-size:0.88rem;padding:11px 20px;}
+
+  .btn-primary {
+    background: var(--text-dark);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal-dark); }
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:62svh;
+    display:flex;
+    align-items:center;
+    padding-block: 11vh 6vh;
+  }
+  .blob{
+    position:absolute;
+    filter:blur(60px);
+    opacity:.5;
+    z-index:0;
+    border-radius:42% 58% 65% 35% / 45% 40% 60% 55%;
+    animation: float 22s ease-in-out infinite alternate;
+  }
+  .blob-1{
+    width:34vw; height:34vw; max-width:460px; max-height:460px;
+    top:-18%; right:-6%;
+    background: radial-gradient(circle at 30% 30%, var(--teal), var(--peach-light) 75%);
+  }
+  .blob-2{
+    width:20vw; height:20vw; max-width:300px; max-height:300px;
+    bottom:-10%; left:4%;
+    background: radial-gradient(circle at 60% 40%, var(--gold), var(--peach) 75%);
+    opacity:.4;
+    animation-delay:-9s;
+  }
+  @keyframes float{
+    0%{ transform: translate(0,0) scale(1); }
+    100%{ transform: translate(-3%, 4%) scale(1.06); }
+  }
+
+  .hero-grid{
+    position:relative; z-index:2;
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 2rem 3rem;
+    align-items:end;
+    width:100%;
+  }
+  .hero-title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    max-width: 14ch;
+  }
+  .hero-title em{
+    font-style:normal;
+    color:var(--terracotta);
+  }
+  .hero-side{
+    border-left: 2px solid var(--gold);
+    padding-left: 1.5rem;
+    margin-bottom: .4rem;
+  }
+  .hero-tagline{
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color:var(--ink-soft);
+    max-width: 34ch;
+  }
+
+  /* ---------- SERVICES LIST ---------- */
+  .story-section{ padding-block: 5rem 5rem; }
+  .section-heading{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    margin: .6rem 0 .8rem;
+    max-width: 18ch;
+  }
+  .section-sub{
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .services-list{
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .services-list.is-visible{ opacity:1; transform:translateY(0); }
+
+  .service-row{
+    position:relative;
+    display:grid;
+    grid-template-columns: 56px 1fr auto;
+    align-items:start;
+    gap: .6rem 2rem;
+    padding: 2.3rem 0 2.3rem 1.3rem;
+    border-top:1px solid var(--line);
+    transition: padding-left .3s ease;
+  }
+  .services-list .service-row:last-child{ border-bottom:1px solid var(--line); }
+  .service-row::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; bottom:0;
+    width:3px;
+    background: var(--row-accent, var(--gold));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .35s ease;
+  }
+  .service-row:hover::before, .service-row:focus-within::before{ transform: scaleY(1); }
+  .service-row:hover, .service-row:focus-within{ padding-left: 1.8rem; }
+
+  .service-num{
+    font-family:var(--font-mono);
+    font-size:.85rem;
+    color: var(--row-accent, var(--ink-soft));
+    padding-top:.4rem;
+  }
+  .service-category{
+    font-family:var(--font-mono);
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:.68rem;
+    color: var(--row-accent, var(--ink-soft));
+    margin-bottom:.5rem;
+    display:block;
+  }
+  .service-title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    margin-bottom:.5rem;
+    transition: color .25s ease;
+  }
+  .service-row:hover .service-title{ color: var(--row-accent, var(--ink)); }
+  .service-desc{
+    color:var(--ink-soft);
+    max-width: 56ch;
+    font-size:.98rem;
+  }
+  .service-tag{
+    align-self:start;
+    margin-top:.3rem;
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color: var(--row-accent, var(--ink));
+    display:inline-flex;
+    align-items:center;
+    gap:.45rem;
+    white-space:nowrap;
+  }
+  .service-tag::before{
+    content:"";
+    width:6px; height:6px;
+    border-radius:50%;
+    background: var(--row-accent, var(--ink));
+    flex-shrink:0;
+  }
+
+  /* ---------- PROCESS STRIP ---------- */
+  .process{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding-block: 3rem;
+  }
+  .process-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 2rem 3rem;
+  }
+  .step{ flex:1 1 220px; }
+  .step .step-num{
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    color:var(--terracotta);
+    margin-bottom:.5rem;
+  }
+  .step h4{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:1.15rem;
+    margin-bottom:.4rem;
+  }
+  .step p{ color:var(--ink-soft); font-size:.92rem; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    margin:110px auto;
+    max-width:1240px;
+    padding:0 clamp(20px,5vw,64px);
+  }
+  .cta-panel{
+    background:linear-gradient(135deg, var(--teal-deep), var(--teal) 55%, #143e58);
+    border-radius:36px;
+    padding:clamp(50px, 7vw, 90px);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .cta-panel::after{
+    content:"";
+    position:absolute;
+    width:380px; height:380px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--sun), transparent 70%);
+    opacity:0.25;
+    right:-100px; top:-140px;
+  }
+.cta-panel h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    max-width: 11ch;
+    position: relative;
+    z-index: 1;
+}
+  .cta-panel .cta-right{
+    position:relative; z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+  }
+  .cta-panel p{
+    font-size:0.95rem;
+    opacity:0.85;
+    max-width:30ch;
+  }
+  .btn-light{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 28px;
+    border-radius:100px;
+    background:#fff;
+    color:var(--teal-deep);
+    font-weight:700;
+    font-size:0.95rem;
+    transition:transform .3s ease, background .3s ease;
+  }
+  .btn-light:hover{ transform:translateY(-2px); background:var(--sun); color:var(--ink); }
+ 
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 0 40px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    padding-bottom:30px;
+    border-bottom:1px solid var(--line);
+  }
+  .footer-links{
+    display:flex;
+    gap:28px;
+    font-size:0.88rem;
+    color:var(--ink-soft);
+  }
+  .dot{
+    width: 10px;
+    height: 10px;
+    background:var(--sun);
+    box-shadow:0 0 0 4px rgba(253,205,13,0.18);
+  }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:24px;
+    font-size:0.8rem;
+    color:var(--ink-faint);
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .nav{padding:16px 22px;}
+    .nav-links{display:none;}
+    .hero-grid{ grid-template-columns: 1fr; }
+    .hero-side{ margin-top:1rem; }
+
+    .service-row{
+      grid-template-columns: 32px 1fr;
+    }
+    .service-tag{
+      grid-column: 2 / 3;
+      margin-top:.6rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .blob{ animation:none !important; }
+    .services-list{ transition:none !important; opacity:1 !important; transform:none !important; }
+    .service-row{ transition:none !important; }
+    .service-row::before{ transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ Header ============ -->
+  <header class="nav siteNav" id="header"></header>
+  <!-- ============ HERO ============ -->
+
+  <main class="hero wrap">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow"><span></span>Servicios</p>
+        <h1 class="hero-title">Un espacio para <em>ti</em>, sea cual sea tu momento</h1>
+      </div>
+      <div class="hero-side">
+        <p class="hero-tagline">Desde terapia individual hasta acompañamiento para toda la familia. Cada proceso se adapta a lo que necesitas.</p>
+      </div>
+    </div>
+</main>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="servicios" class="story-section wrap">
+    <p class="eyebrow"><span></span>Lo que ofrezco</p>
+    <h2 class="section-heading">Areas de apoyo</h2>
+    <p class="section-sub">Seis maneras de empezar, según lo que estés viviendo.</p>
+
+    <div class="services-list">
+
+      <div class="service-row" style="--row-accent:var(--olive);">
+        <span class="service-num">01</span>
+        <div>
+          <span class="service-category">Terapia individual</span>
+          <h3 class="service-title">Para adolescentes</h3>
+          <p class="service-desc">Sesiones de psicología clínica para trabajar autoestima, ansiedad, identidad y relaciones, en un espacio seguro y sin juicios.</p>
+        </div>
+        <span class="service-tag">13–19 años</span>
+      </div>
+
+      <div class="service-row" style="--row-accent:var(--coral);">
+        <span class="service-num">02</span>
+        <div>
+          <span class="service-category">Acompañamiento</span>
+          <h3 class="service-title">Orientación para padres</h3>
+          <p class="service-desc">Espacios para entender lo que vive tu hijo o hija adolescente, y aprender a guiar desde la información, no desde el miedo.</p>
+        </div>
+        <span class="service-tag">Madres y padres</span>
+      </div>
+
+      <div class="service-row" style="--row-accent:var(--terracotta);">
+        <span class="service-num">03</span>
+        <div>
+          <span class="service-category">Sexología</span>
+          <h3 class="service-title">Educación sexual</h3>
+          <p class="service-desc">Información clara y responsable sobre sexualidad, dirigida a adolescentes y a sus familias.</p>
+        </div>
+        <span class="service-tag">Adolescentes y padres</span>
+      </div>
+
+      <div class="service-row" style="--row-accent:var(--salmon);">
+        <span class="service-num">04</span>
+        <div>
+          <span class="service-category">Grupal</span>
+          <h3 class="service-title">Talleres y charlas</h3>
+          <p class="service-desc">Espacios grupales para colegios, fundaciones o grupos de padres, sobre adolescencia, sueños y crianza consciente.</p>
+        </div>
+        <span class="service-tag">Instituciones y grupos</span>
+      </div>
+
+      <div class="service-row" style="--row-accent:var(--teal);">
+        <span class="service-num">05</span>
+        <div>
+          <span class="service-category">Life coaching</span>
+          <h3 class="service-title">Para jóvenes</h3>
+          <p class="service-desc">Sesiones certificadas internacionalmente (ILC Academy) enfocadas en potenciar metas, autoconfianza y dirección de vida.</p>
+        </div>
+        <span class="service-tag">Adolescentes y jóvenes</span>
+      </div>
+
+      <div class="service-row" style="--row-accent:var(--blue-deep);">
+        <span class="service-num">06</span>
+        <div>
+          <span class="service-category">Acompañamiento integral</span>
+          <h3 class="service-title">Terapia + coaching</h3>
+          <p class="service-desc">Un proceso combinado que une psicología clínica y coaching, para quienes buscan sanar y crecer al mismo tiempo.</p>
+        </div>
+        <span class="service-tag">Procesos a la medida</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="process wrap">
+    <div class="process-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Escríbeme</h4>
+        <p>Me cuentas brevemente qué está pasando, para ti o para tu hijo o hija.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Conversamos</h4>
+        <p>Una primera sesión para conocernos y ver qué servicio se ajusta mejor.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Diseñamos tu proceso</h4>
+        <p>Definimos juntos la frecuencia, modalidad y objetivos a seguir.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="book">
+    <div class="cta-panel reveal">
+      <h2>Ready when you are.</h2>
+      <div class="cta-right">
+        <p>In-person and virtual sessions available. Most people hear back within one business day.</p>
+        <a class="btn-light" href="#">Book your first session →</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer -->
+    <footer>
+    <div class="wrap">
+        <div class="footer-grid">
+        <a class="logo" href="#top"><span class="dot"></span>Rosina Peñaranda, MD</a>
+        <div class="footer-links">
+            <a href="#services">Focus areas</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#book">Book a session</a>
+        </div>
+        </div>
+        <div class="footer-bottom">
+        <span>hello@rosinapenaranda.com — placeholder</span>
+        <span>© 2026 Rosina Peñaranda, MD. All rights reserved.</span>
+        </div>
+    </div>
+    </footer>
+
+<script>
+  // Scroll-reveal for the services list
+  const list = document.querySelector('.services-list');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  if (list) io.observe(list);
+</script>
+
+<script src="./functions/header.js"></script>
+</body>
+</html>

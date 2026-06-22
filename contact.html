@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Pienso Grande</title>
+<link rel="stylesheet" href="./styles/header.css">
+<link rel="stylesheet" href="/styles/contact.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- NAV -->
+  <header class="nav siteNav" id="header"></header>
+
+<!-- HERO -->
+<div style="max-width:1200px; margin:0 auto;">
+  <div class="hero">
+    <div class="heroContainer">
+      <div class="hero-eyebrow">Contacto</div>
+      <h1>El cambio<br>empieza con<br>una <em>conversación.</em></h1>
+      <p>Escríbenos, llámanos o visítanos. Estamos aquí para acompañarte sin juicios — y con herramientas reales.</p>
+    </div>
+    <div class="hero-visual">
+      <div class="blob-accent-1"></div>
+      <div class="blob-frame">
+      </div>
+      <div class="blob-accent-2"></div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO BAND -->
+
+<!-- MAIN CONTACT SECTION -->
+<div class="contact-section">
+
+  <!-- FORM -->
+  <div>
+    <div class="form-header">
+      <div class="form-eyebrow">Escríbenos</div>
+      <h2>Envíame un<br>mensaje.</h2>
+    </div>
+
+    <div id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="correo" placeholder="tu@correo.com">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Teléfono (opcional)</label>
+          <input type="tel" id="telefono" placeholder="+58 000 0000000">
+        </div>
+        <div class="form-group">
+          <label>¿Cómo nos conociste?</label>
+          <select id="como">
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Instagram</option>
+            <option>Recomendación</option>
+            <option>Google</option>
+            <option>Facebook</option>
+            <option>Otra red social</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full">
+          <label>Mensaje</label>
+          <textarea id="mensaje" placeholder="Cuéntame un poco sobre lo que necesitas..."></textarea>
+        </div>
+      </div>
+
+      <span class="service-label">Servicio interesado</span>
+      <div class="checkbox-group">
+        <label class="checkbox-pill" onclick="togglePill(this)">
+          <input type="checkbox">
+          <span class="pill-dot"></span>
+          <span class="pill-text">Servicios</span>
+        </label>
+        <label class="checkbox-pill" onclick="togglePill(this)">
+          <input type="checkbox">
+          <span class="pill-dot"></span>
+          <span class="pill-text">Sugerencias</span>
+        </label>
+        <label class="checkbox-pill" onclick="togglePill(this)">
+          <input type="checkbox">
+          <span class="pill-dot"></span>
+          <span class="pill-text">Consultas</span>
+        </label>
+      </div>
+
+      <div class="form-footer">
+        <button class="btn-submit" onclick="handleSubmit()">Enviar mensaje →</button>
+      </div>
+    </div>
+
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✉️</div>
+      <h4>¡Mensaje recibido!</h4>
+      <p>Gracias por escribirme. Te responderé en menos de un día hábil.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT CARD -->
+  <div>
+    <div class="contact-card">
+      <div class="card-eyebrow">● Información de contacto</div>
+      <h3>Contáctame<br>directamente.</h3>
+      <p class="card-sub">El cambio que buscas empieza aquí.</p>
+
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><img src="./images/home/location-icon.png" alt="location"></div>
+        <div class="contact-item-content">
+          <div class="contact-item-label">Dirección</div>
+          <div class="contact-item-value">
+            Calle 61 Av Universidad<br>
+            Edificio Clínica Paraíso, piso 1.<br>
+            Maracaibo, Venezuela
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><img src="./images/home/phone-call.png" alt="location"></div>
+        <div class="contact-item-content">
+          <div class="contact-item-label">Teléfonos</div>
+          <div class="contact-item-value">
+            <a href="tel:+582617418565">+58 261 741 8565</a><br>
+            <a href="tel:+584146334807">+58 414 633 4807</a><br>
+            <a href="tel:+17866597100">+1 (786) 659-7100</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-icon-wrap"><img src="./images/home/mail-icon.png" alt="location"></div>
+        <div class="contact-item-content">
+          <div class="contact-item-label">Correo electrónico</div>
+          <div class="contact-item-value">
+            <a href="mailto:info@piensogrande.com">info@piensogrande.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-social">
+        <div class="card-social-label">Síguenos en redes</div>
+        <div class="social-pills">
+          <a href="#" class="social-pill">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="#" class="social-pill">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="#" class="social-pill">
+            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.76l7.73-8.835L1.254 2.25H8.08l4.713 5.867zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X (Twitter)
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- REDES SOCIALES -->
+<div class="social-section">
+  <div class="social-eyebrow">Redes sociales</div>
+  <h2>Encuéntranos en<br>todas <em>partes.</em></h2>
+  <p class="social-sub">Puedes ubicarnos en todas las redes como <strong>@piensogrande</strong></p>
+  <div class="social-big-grid">
+    <a href="#" class="social-big-pill">
+      <div class="spill-icon spill-fb">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <span class="spill-name">Facebook</span>
+    </a>
+    <a href="#" class="social-big-pill">
+      <div class="spill-icon spill-x">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.76l7.73-8.835L1.254 2.25H8.08l4.713 5.867zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </div>
+      <span class="spill-name">X (Twitter)</span>
+    </a>
+    <a href="#" class="social-big-pill">
+      <div class="spill-icon spill-ig">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </div>
+      <span class="spill-name">Instagram</span>
+    </a>
+    <a href="#" class="social-big-pill">
+      <div class="spill-icon spill-sk">
+        <svg viewBox="0 0 24 24"><path d="M12.069 18.874c-4.023 0-5.834-1.97-5.834-3.37 0-.734.595-1.249 1.367-1.249 1.542 0 1.276 2.227 4.467 2.227 1.64 0 2.535-.895 2.535-1.79 0-.542-.283-1.135-1.307-1.382l-3.468-.878C7.038 11.588 6.408 9.893 6.408 8.29c0-3.322 3.049-4.554 5.93-4.554 2.66 0 5.617 1.465 5.617 3.404 0 .756-.648 1.19-1.39 1.19-1.38 0-1.135-1.91-4.371-1.91-1.466 0-2.284.68-2.284 1.64 0 .962.959 1.22 1.76 1.41l2.58.618c2.87.689 3.696 2.32 3.696 3.902 0 2.64-2.005 4.884-5.877 4.884z"/></svg>
+      </div>
+      <span class="spill-name">Skype</span>
+    </a>
+    <a href="#" class="social-big-pill">
+      <div class="spill-icon spill-yt">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </div>
+      <span class="spill-name">YouTube</span>
+    </a>
+  </div>
+</div>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" id="book">
+    <div class="cta-panel reveal">
+      <h2>Ready when you are.</h2>
+      <div class="cta-right">
+        <p>In-person and virtual sessions available. Most people hear back within one business day.</p>
+        <a class="btn-light" href="#">Book your first session →</a>
+      </div>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+    <footer>
+    <div class="wrap">
+        <div class="footer-grid">
+        <a class="logo" href="#top"><span class="dot"></span>Rosina Peñaranda, MD</a>
+        <div class="footer-links">
+            <a href="#services">Focus areas</a>
+            <a href="#about">About</a>
+            <a href="#process">Process</a>
+            <a href="#book">Book a session</a>
+        </div>
+        </div>
+        <div class="footer-bottom">
+        <span>hello@rosinapenaranda.com — placeholder</span>
+        <span>© 2026 Rosina Peñaranda, MD. All rights reserved.</span>
+        </div>
+    </div>
+    </footer>
+
+<script>
+  function togglePill(el) {
+    el.classList.toggle('checked');
+  }
+
+  function handleSubmit() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if (!nombre || !correo || !mensaje) {
+      // Highlight empty required fields
+      [['nombre', 'Nombre'], ['correo', 'Correo'], ['mensaje', 'Mensaje']].forEach(([id]) => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = 'var(--coral)';
+          el.addEventListener('input', () => el.style.borderColor = '', { once: true });
+        }
+      });
+      return;
+    }
+
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+<script src="./functions/header.js"></script>
+</body>
+</html>

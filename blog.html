@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Pienso Grande</title>
+<link rel="stylesheet" href="./styles/header.css">
+<link rel="stylesheet" href="/styles/footer.css">
+<link rel="stylesheet" href="/styles/blogPage.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="nav siteNav" id="header"></header>
+
+<div style="background:white; border-bottom:1px solid var(--border);">
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Buscar artículos...">
+    </div>
+    <div class="filter-tags" id="filterTags">
+      <span class="filter-tag active" data-tag="Todos">Todos</span>
+      <span class="filter-tag" data-tag="Comunicación">Comunicación</span>
+      <span class="filter-tag" data-tag="Familia">Familia</span>
+      <span class="filter-tag" data-tag="Autoestima">Autoestima</span>
+      <span class="filter-tag" data-tag="Adolescencia">Adolescencia</span>
+      <span class="filter-tag" data-tag="Emociones">Emociones</span>
+      <span class="filter-tag" data-tag="Coaching">Coaching</span>
+      <span class="filter-tag" data-tag="Liderazgo">Liderazgo</span>
+    </div>
+  </div>
+</div>
+
+<div class="blog-layout">
+  <main>
+    <div id="featuredSlot"></div>
+    <div class="posts-grid" id="postsGrid"></div>
+    <div class="load-more-wrap">
+      <button class="btn-load" id="loadMoreBtn" onclick="loadMore()">Ver más artículos</button>
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <p class="sidebar-title">Buscar</p>
+      <div class="sidebar-search">
+        <span class="s-icon">🔍</span>
+        <input type="text" id="sidebarSearch" placeholder="Buscar en el blog...">
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <p class="sidebar-title">Entradas recientes</p>
+      <div class="recent-list" id="recentList"></div>
+    </div>
+    <div class="sidebar-card">
+      <p class="sidebar-title">Temas</p>
+      <div class="tags-cloud" id="tagsCloud"></div>
+    </div>
+  </aside>
+</div>
+
+  <div id="cta"></div>
+
+  <footer id="footer"></footer>
+
+<script>
+// ─── CARD COLORS (cycle through for variety) ───
+const cardColors = [
+  'linear-gradient(145deg,#F9CAAE,#EDB898)',
+  'linear-gradient(145deg,#C5D8E8,#A8C4D8)',
+  'linear-gradient(145deg,#F5DEB3,#E8C485)',
+  'linear-gradient(145deg,#D8E8C5,#B8D4A0)',
+  'linear-gradient(145deg,#E8C5D4,#D4A0B8)',
+  'linear-gradient(145deg,#C5D4E8,#A0B8D4)',
+];
+const cardEmojis = ['📸','📘','💛','🌱','💗','🧠','✨','💙','🌸','🍃'];
+
+// ─── DATA ───
+const newsPosts = [
+  {
+    newImg: 'images/newsImg/blog-8422.jpg',
+    nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN',
+    date: 'Ago 4, 2022',
+    firstParagraph: 'Definitivamente establecer una buena relación con los hijos adolescentes es todo un reto que suele ser arduo, agotador, pareciera que la conexión con nuestros hijos y tener un día sin novedad es casi imposible. Esto es porque durante la adolescencia se viven una serie de cambios importantes...',
+    tags: [
+      { cat: 'Comunicación', color: '#d4684b' },
+      { cat: 'Familia', color: '#1a587f' }
+    ],
+    linkPost: '/news/new8422.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-81522.jpg',
+    nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN 2',
+    date: 'Ago 15, 2022',
+    firstParagraph: 'En esta PARTE 2 de “Hijos adolescentes, 15 maneras de mejorar la relación” continuamos hablando sobre cómo lograr conectarnos a nivel emocional...',
+    tags: [
+      { cat: 'Comunicación', color: '#d4684b' },
+      { cat: 'Familia', color: '#1a587f' }
+    ],
+    linkPost: '/news/new81522.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-41321.jpg',
+    nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 1',
+    date: 'Abr 13, 2021',
+    firstParagraph: 'Cuando queremos decir algo, pocas veces nos detenemos a pensar en el efecto que tendrán nuestras palabras en quien tiene la intención de escucharnos...',
+    tags: [
+      { cat: 'Comunicación', color: '#d4684b' },
+      { cat: 'Emociones', color: '#e39b48' }
+    ],
+    linkPost: '/news/new41321.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-41921.jpg',
+    nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 2',
+    date: 'Abr 19, 2021',
+    firstParagraph: 'En esta segunda parte de “las emociones y la comunicación. Logra una comunicación de éxito” seguiremos indagando sobre cómo conseguir la armonía entre lo que sentimos y decimos...',
+    tags: [
+      { cat: 'Comunicación', color: '#d4684b' },
+      { cat: 'Emociones', color: '#1a587f' },
+      { cat: 'Familia', color: '#1a587f' }
+    ],
+    linkPost: '/news/new41921.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-122920.jpg',
+    nameNew: 'Los adolescentes frente a la pandemia, retos para el 2021',
+    date: 'Dic 29, 2020',
+    firstParagraph: 'La adolescencia es una etapa cargada de grandes cambios tanto físicos como psicológicos y si a eso le sumamos todos los cambios...',
+    tags: [
+      { cat: 'Adolescencia', color: '#987a01' },
+      { cat: 'Autoestima', color: '#1a587f' }
+    ],
+    linkPost: '/news/new122920.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-21720.jpg',
+    nameNew: 'Ruptura amorosa en la adolescencia: cómo ayudar a tu hijo a superarlo',
+    date: 'Feb 17, 2020',
+    firstParagraph: 'En el transcurso de la adolescencia muchos experimentamos el primer amor, todo parece maravilloso con una atmósfera cargada de sueños y romanticismo...',
+    tags: [
+      { cat: 'Relaciones', color: '#987a01' },
+      { cat: 'Sexualidad', color: '#e39b48' }
+    ],
+    linkPost: '/news/new21720.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-21919.jpg',
+    nameNew: 'El noviazgo en la adolescencia. Una guía para los padres',
+    date: 'Feb 19, 2019',
+    firstParagraph: 'Nuestro adolescente tiene novio y ahora la pregunta es ¿Qué hacemos? Si tuvimos la ventaja que nos lo contara eso quiere decir que hemos hecho las cosas bien en el plano de la confianza y el respeto...',
+    tags: [
+      { cat: 'Emociones', color: '#1a587f' },
+      { cat: 'Sexualidad', color: '#d4684b' }
+    ],
+    linkPost: '/news/new21919.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-2819.jpg',
+    nameNew: 'El primer amor en la adolescencia',
+    date: 'Feb 8, 2019',
+    firstParagraph: '¿Quién no recuerda su primer amor?  Yo por lo menos recuerdo el mío con mucha ternura, fue un amor muy romántico, realmente especial, mi primer beso, mi primera ilusión...',
+    tags: [
+      { cat: 'Emociones', color: '#d4684b' },
+      { cat: 'Sexualidad', color: '#987a01' }
+    ],
+    linkPost: '/news/new2819.html'
+  },
+  {
+    newImg: 'images/newsImg/blog-10918.jpeg',
+    nameNew: 'Fotos y videos de los adolescentes en las redes sociales',
+    date: 'Oct 9, 2018',
+    firstParagraph: 'Las redes sociales se han convertido en la plataforma que los adolescentes utilizan para postularse a la popularidad...',
+    tags: [ 
+      { cat: 'Redes sociales', color: '#d4684b' },
+      { cat: 'Sexualidad', color: '#987a01' }
+    ],
+    linkPost: '/news/new10918.html'
+  },
+];
+
+// ─── STATE ───
+const POSTS_PER_PAGE = 6;
+let currentFilter = 'Todos';
+let currentSearch = '';
+let visibleCount = POSTS_PER_PAGE;
+
+// ─── HELPERS ───
+function getFiltered() {
+  return newsPosts.filter((p, i) => {
+    const matchTag = currentFilter === 'Todos' || p.tags.some(t => t.cat === currentFilter);
+    const q = currentSearch.toLowerCase();
+    const matchSearch = !q || p.nameNew.toLowerCase().includes(q) || p.firstParagraph.toLowerCase().includes(q) || p.tags.some(t => t.cat.toLowerCase().includes(q));
+    return matchTag && matchSearch;
+  });
+}
+
+function tagHTML(tag) {
+  return `<span class="post-tag" style="color:${tag.color}">${tag.cat}</span>`;
+}
+
+function imgHTML(post, index, large = false) {
+  const color = cardColors[index % cardColors.length];
+  const emoji = cardEmojis[index % cardEmojis.length];
+  if (post.newImg) {
+    return `<img src="${post.newImg}" alt="${post.nameNew}" onerror="this.style.display='none';this.parentNode.querySelector('.img-placeholder').style.display='flex'">
+            <div class="img-placeholder" style="display:none"><span class="ph-icon">${emoji}</span></div>`;
+  }
+  return `<div class="img-placeholder" style="background:${color}"><span class="ph-icon">${emoji}</span></div>`;
+}
+
+// ─── RENDER ───
+function render() {
+  const filtered = getFiltered();
+  const featuredSlot = document.getElementById('featuredSlot');
+  const postsGrid = document.getElementById('postsGrid');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+  if (filtered.length === 0) {
+    featuredSlot.innerHTML = '';
+    postsGrid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>Sin resultados</h3><p>No encontramos artículos con ese criterio. Intenta con otra búsqueda.</p></div>`;
+    loadMoreBtn.style.display = 'none';
+    renderRecent(newsPosts);
+    return;
+  }
+
+  // Featured = first result
+  const featured = filtered[0];
+  featuredSlot.innerHTML = `
+    <a class="featured-post" href="${featured.linkPost}">
+      <div class="featured-img">
+        ${imgHTML(featured, 0, true)}
+        <span class="featured-badge">Destacado</span>
+      </div>
+      <div class="featured-body">
+        <div class="post-tags">${featured.tags.map(tagHTML).join('')}</div>
+        <h2>${featured.nameNew}</h2>
+        <p>${featured.firstParagraph}</p>
+        <div class="post-meta"><span>${featured.date}</span><span class="meta-dot"></span><span>5 min de lectura</span></div>
+        <span class="read-link">Leer artículo →</span>
+      </div>
+    </a>`;
+
+  // Grid = rest, up to visibleCount
+  const rest = filtered.slice(1, visibleCount + 1);
+  if (rest.length === 0) {
+    postsGrid.innerHTML = '';
+  } else {
+    postsGrid.innerHTML = rest.map((p, i) => `
+      <a class="post-card" href="${p.linkPost}">
+        <div class="card-img">
+          ${imgHTML(p, i + 1)}
+        </div>
+        <div class="card-body">
+          <div class="post-tags">${p.tags.map(tagHTML).join('')}</div>
+          <h3>${p.nameNew}</h3>
+          <p>${p.firstParagraph}</p>
+          <div class="card-footer">
+            <span class="card-date">${p.date}</span>
+            <span class="card-arrow">→</span>
+          </div>
+        </div>
+      </a>`).join('');
+  }
+
+  // Load more
+  const totalShown = 1 + rest.length;
+  if (totalShown >= filtered.length) {
+    loadMoreBtn.style.display = 'none';
+  } else {
+    loadMoreBtn.style.display = 'inline-block';
+  }
+
+  renderRecent(filtered);
+}
+
+function renderRecent(posts) {
+  const list = document.getElementById('recentList');
+  list.innerHTML = posts.slice(0, 5).map(p => `
+    <a class="recent-item" href="#">
+      <div class="recent-info">
+        <div class="recent-title">${p.nameNew}</div>
+        <div class="recent-date">${p.date}</div>
+      </div>
+    </a>`).join('');
+}
+
+function renderTags() {
+  const allTags = [...new Set(newsPosts.flatMap(p => p.tags.map(t => t.cat)))];
+  document.getElementById('tagsCloud').innerHTML = allTags.map(t =>
+    `<a class="tag-pill" href="#" onclick="setFilter('${t}');return false;">${t}</a>`
+  ).join('');
+}
+
+// ─── EVENTS ───
+function setFilter(tag) {
+  currentFilter = tag;
+  visibleCount = POSTS_PER_PAGE;
+  document.querySelectorAll('.filter-tag').forEach(el => {
+    el.classList.toggle('active', el.dataset.tag === tag);
+  });
+  document.querySelectorAll('#tagsCloud .tag-pill').forEach(el => {
+    el.classList.toggle('active', el.textContent === tag);
+  });
+  render();
+}
+
+function loadMore() {
+  visibleCount += POSTS_PER_PAGE;
+  render();
+}
+
+document.querySelectorAll('.filter-tag').forEach(el => {
+  el.addEventListener('click', () => setFilter(el.dataset.tag));
+});
+
+let searchTimer;
+function handleSearch(val) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    currentSearch = val;
+    visibleCount = POSTS_PER_PAGE;
+    render();
+  }, 250);
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  document.getElementById('sidebarSearch').value = e.target.value;
+  handleSearch(e.target.value);
+});
+document.getElementById('sidebarSearch').addEventListener('input', e => {
+  document.getElementById('searchInput').value = e.target.value;
+  handleSearch(e.target.value);
+});
+
+// ─── INIT ───
+renderTags();
+render();
+</script>
+
+<script src="./functions/header.js"></script>
+<script src="./functions/footer.js"></script>
+</body>
+</html>
