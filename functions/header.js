@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <li><a href="/piensogrande/blog.html">Blog</a></li>
           <li><a href="/piensogrande/services.html">Como puedo ayudarte</a></li>
       </ul>
-    <a class="btn btn-primary nav-cta" href="/contact.html">Agenda una sesión</a>
+    <a class="btn btn-primary nav-cta" href="/piensogrande/contact.html">Agenda una sesión</a>
     `;
 });
 
