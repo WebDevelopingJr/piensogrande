@@ -5,11 +5,10 @@ document.getElementById("site-header").innerHTML = `
   <a href="/" class="nav-logo"><img id="logoImg" src='../images/home/log-pienso-horiz.png' alt='logo-pienso' /></a>
 
     <ul class="nav-links">
-      <li><a href="/aboutUs.html">Conócenos</a></li>
-      <li><a href="/services.html">Servicios</a></li>
-      <li><a href="#libro">Mi libro</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#contacto" class="nav-cta">Agenda una sesión</a></li>
+      <li><a href="/piensogrande/aboutUs.html">Conócenos</a></li>
+      <li><a href="/piensogrande/services.html">Servicios</a></li>
+      <li><a href="/piensogrande/blog.html">Blog</a></li>
+      <li><a href="/piensogrande/contact.html" class="nav-cta">Contactame</a></li>
     </ul>
 
     <button class="nav-hamburger" id="hamburger">
@@ -19,11 +18,10 @@ document.getElementById("site-header").innerHTML = `
 
   <div class="nav-mobile" id="mobileMenu">
     <ul>
-      <li><a href="#sobre-mi" class="mobile-link">Sobre mí</a></li>
-      <li><a href="#servicios" class="mobile-link">Servicios</a></li>
-      <li><a href="#libro" class="mobile-link">Mi libro</a></li>
-      <li><a href="#blog" class="mobile-link">Blog</a></li>
-      <li><a href="#contacto" class="mobile-link">Contacto</a></li>
+      <li><a href="/piensogrande/aboutUs.html" class="mobile-link">Conocenos</a></li>
+      <li><a href="/piensogrande/services.html" class="mobile-link">Servicios</a></li>
+      <li><a href="/piensogrande/blog.html" class="mobile-link">Blog</a></li>
+      <li><a href="/piensogrande/contact.html" class="mobile-link">Contactame</a></li>
     </ul>
   </div>
 `;
