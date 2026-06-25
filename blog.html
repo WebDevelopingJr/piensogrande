@@ -1,345 +1,1376 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Pienso Grande</title>
-<link rel="stylesheet" href="./styles/header.css">
-<link rel="stylesheet" href="./styles/footer.css">
-<link rel="stylesheet" href="./styles/blogPage.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Pienso Grande® – Rosina Peñaranda</title>
+  <meta name="description" content="Artículos, reflexiones y herramientas para padres y adolescentes que quieren crecer juntos.">
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- AOS – Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --coral:        #d4684b;
+      --coral-dark:   #b85038;
+      --teal:         #1a587f;
+      --teal-dark:    #133f5c;
+      --amber:        #e39b48;
+      --amber-dark:   #c8873a;
+      --yellow:       #fdcd0d;
+      --olive:        #987a01;
+      --salmon:       #ee7d57;
+      --peach:        #f4a776;
+      --blush:        #f9caae;
+      --warm-bg:      #fdf6ef;
+      --warm-bg-2:    #fefaf5;
+      --dark:         #1a1a1a;
+      --mid:          #4a4a4a;
+      --light:        #7a7a7a;
+      --border:       rgba(0,0,0,0.07);
+
+      --ff-display:   'Bricolage Grotesque', sans-serif;
+      --ff-body:      'Inter', sans-serif;
+      --ff-mono:      'Space Mono', monospace;
+
+      --radius-card:  18px;
+      --shadow-card:  0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 20px 56px rgba(0,0,0,0.14);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      color: var(--dark);
+      background: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; color: inherit; }
+
+
+    /* ============================================================
+       BLOG HERO
+    ============================================================ */
+    .blog-hero {
+      background: linear-gradient(135deg, #0e2f45 0%, var(--teal) 50%, #1d6a96 100%);
+      padding: 9rem 6rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0; right: 0;
+      height: 80px;
+      background: #fff;
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .blog-hero-eye {
+      font-family: var(--ff-mono);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .blog-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      line-height: .95;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .blog-hero-title em { font-style: normal; color: var(--amber); }
+    .blog-hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.72;
+      color: rgba(255,255,255,.7);
+      max-width: 520px;
+    }
+
+    /* ============================================================
+       FILTER BAR (Sticky)
+    ============================================================ */
+    .filter-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .filter-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: .9rem 4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    /* Search */
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--warm-bg);
+      border: 1.5px solid transparent;
+      border-radius: 100px;
+      padding: .5rem 1rem;
+      flex-shrink: 0;
+      transition: border-color .2s;
+    }
+    .search-box:focus-within { border-color: var(--coral); }
+    .search-box svg { flex-shrink: 0; opacity: .4; }
+    .search-input {
+      background: none;
+      border: none;
+      outline: none;
+      font-family: var(--ff-body);
+      font-size: .83rem;
+      color: var(--dark);
+      width: 160px;
+    }
+    .search-input::placeholder { color: var(--light); }
+    /* Pills */
+    .pills {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+    }
+    .pills::-webkit-scrollbar { display: none; }
+    .pill {
+      display: inline-block;
+      white-space: nowrap;
+      font-family: var(--ff-body);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .45rem 1.1rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(0,0,0,.13);
+      background: #fff;
+      color: var(--mid);
+      cursor: pointer;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .pill:hover { border-color: var(--coral); color: var(--coral); }
+    .pill.active {
+      background: var(--coral);
+      border-color: var(--coral);
+      color: #fff;
+    }
+    /* Override active color per category */
+    .pill.active[data-cat="comunicacion"]  { background: #d4684b; border-color: #d4684b; }
+    .pill.active[data-cat="familia"]       { background: #1a587f; border-color: #1a587f; }
+    .pill.active[data-cat="emociones"]     { background: #e39b48; border-color: #e39b48; }
+    .pill.active[data-cat="adolescencia"]  { background: #987a01; border-color: #987a01; }
+    .pill.active[data-cat="autoestima"]    { background: #1c5b82; border-color: #1c5b82; }
+    .pill.active[data-cat="relaciones"]    { background: #987a01; border-color: #987a01; }
+    .pill.active[data-cat="sexualidad"]    { background: #d4684b; border-color: #d4684b; }
+    .pill.active[data-cat="redes-sociales"]{ background: #d4684b; border-color: #d4684b; }
+    .pill.active[data-cat="coaching"]      { background: #1c5b82; border-color: #1c5b82; }
+
+    /* ============================================================
+       MAIN CONTENT
+    ============================================================ */
+    #mainContent {
+      transition: opacity .28s ease, transform .28s ease;
+      min-height: 60vh;
+    }
+    #mainContent.fading {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    /* ============================================================
+       FEATURED POST + SIDEBAR
+    ============================================================ */
+    .featured-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      align-items: start;
+      gap: 56px;
+    }
+    .featured-main {
+      display: grid;
+      gap: 40px;
+    }
+    .featured-card {
+      display: grid;
+      gap: 40px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      background: #fff;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .featured-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+    .featured-img {
+      position: relative;
+      aspect-ratio: 16/11;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--teal), var(--coral));
+    }
+    .featured-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .featured-card:hover .featured-img img { transform: scale(1.04); }
+    .featured-badge {
+      position: absolute;
+      top: 1.2rem; left: 1.2rem;
+      background: var(--coral);
+      color: #fff;
+      font-family: var(--ff-mono);
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .3rem .75rem;
+      border-radius: 100px;
+      z-index: 2;
+    }
+    .featured-body {
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: var(--warm-bg-2);
+    }
+    .post-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-bottom: .85rem;
+    }
+    .post-tag {
+      font-family: var(--ff-mono);
+      font-size: .6rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .22rem .65rem;
+      border-radius: 100px;
+    }
+    .featured-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .featured-excerpt {
+      font-size: .92rem;
+      line-height: 1.72;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .post-date {
+      font-family: var(--ff-mono);
+      font-size: .62rem;
+      letter-spacing: .08em;
+      color: var(--light);
+    }
+    .read-link {
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--coral);
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      transition: gap .2s;
+    }
+    .read-link:hover { gap: .75rem; }
+
+    .show-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0 4rem;
+    }
+
+    .show-more-btn {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 999px;
+      background: var(--coral);
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .show-more-btn:hover {
+      background: var(--coral-dark);
+      transform: translateY(-2px);
+    }
+    /* ============================================================
+       SIDEBAR — "Top picks" / más recientes
+    ============================================================ */
+    .sidebar-picks {
+      background: var(--warm-bg);
+      border-radius: 22px;
+      padding: 2.2rem 1.9rem 1.2rem;
+      position: sticky;
+      top: 110px;
+    }
+    .sidebar-picks-title {
+      font-family: var(--ff-display);
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-pick {
+      display: block;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-pick:first-of-type { padding-top: 0; }
+    .sidebar-pick:last-of-type { border-bottom: none; padding-bottom: .2rem; }
+    .sidebar-pick-cat {
+      display: block;
+      font-family: var(--ff-mono);
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+    .sidebar-pick-title {
+      display: block;
+      font-size: .94rem;
+      font-weight: 600;
+      line-height: 1.42;
+      color: var(--dark);
+      transition: color .2s;
+    }
+    .sidebar-pick:hover .sidebar-pick-title { color: var(--coral); }
+
+    /* ==========================================
+      COLLECTIONS
+    ========================================== */
+
+    .collections-section {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 4rem;
+    }
+
+    .collections-header h2 {
+      font-family: var(--ff-display);
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .collection-card {
+      aspect-ratio: 3 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      transition: transform .3s ease;
+    }
+
+    .collection-overlay:hover h3 {
+      transition: transform .5s ease;
+      transform: translateY(-20px);
+    }
+
+    .collection-overlay {
+      position: absolute;
+      inset: 0;
+
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.15)
+      );
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      padding: 1.5rem;
+    }
+
+    .collection-overlay h3 {
+      color: white;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+      transition: transform .3s ease;
+    }
+
+    /* ============================================================
+       CATEGORY SECTIONS (Todos view)
+    ============================================================ */
+    .cat-section {
+      padding: 4rem 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .cat-section-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+    .cat-section-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .cat-section-hd-left {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .cat-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cat-section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      color: var(--dark);
+    }
+    .cat-see-all {
+      background: none;
+      border: 1.5px solid var(--border);
+      padding: .5rem 1.1rem;
+      border-radius: 100px;
+      font-family: var(--ff-body);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--mid);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: .3rem;
+      transition: border-color .2s, color .2s, background .2s, transform .2s;
+    }
+    .cat-see-all:hover {
+      border-color: var(--coral);
+      color: var(--coral);
+      transform: translateY(-1px);
+    }
+
+    /* Posts row in category section */
+    .posts-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.3rem;
+    }
+    .posts-row--3 { grid-template-columns: repeat(3, 1fr); }
+
+    /* ============================================================
+       POST CARD
+    ============================================================ */
+    .post-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s;
+      cursor: pointer;
+    }
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .post-card-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blush), var(--peach));
+      position: relative;
+    }
+    .post-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+    .post-card:hover .post-card-img img { transform: scale(1.06); }
+    .post-card-body {
+      padding: 1.4rem 1.4rem 1.6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-card-title {
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.3;
+      color: var(--dark);
+      margin: .55rem 0 .5rem;
+      flex: 1;
+      transition: color .2s;
+    }
+    .post-card:hover .post-card-title { color: var(--coral); }
+    .post-card-excerpt {
+      font-size: .82rem;
+      line-height: 1.62;
+      color: var(--light);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .post-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .post-card-arrow {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s, background .2s;
+    }
+    .post-card:hover .post-card-arrow {
+      border-color: var(--coral);
+      background: var(--coral);
+    }
+    .post-card:hover .post-card-arrow svg { stroke: #fff; }
+
+    /* ============================================================
+       FILTERED VIEW
+    ============================================================ */
+    .filtered-view {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 3rem 4rem 6rem;
+    }
+    .filtered-hd {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .filtered-eye {
+      font-family: var(--ff-mono);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--light);
+      display: block;
+      margin-bottom: .6rem;
+    }
+    .filtered-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      line-height: .95;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+    .filtered-count {
+      font-family: var(--ff-mono);
+      font-size: .7rem;
+      letter-spacing: .1em;
+      color: var(--light);
+    }
+    .filtered-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* ============================================================
+       SEARCH RESULTS VIEW
+    ============================================================ */
+    .search-results-view {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 3rem 4rem 6rem;
+    }
+    .search-results-hd {
+      margin-bottom: 2rem;
+    }
+    .search-results-title {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--dark);
+    }
+    .search-results-title span { color: var(--coral); }
+    .search-results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* ============================================================
+       NO RESULTS
+    ============================================================ */
+    .no-results {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .no-results-emoji { font-size: 3.5rem; margin-bottom: 1.5rem; }
+    .no-results-title {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      margin-bottom: .8rem;
+      color: var(--dark);
+    }
+    .no-results-sub { font-size: .95rem; color: var(--light); line-height: 1.7; }
+    .no-results-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      background: var(--coral);
+      color: #fff;
+      padding: .85rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: .9rem;
+      cursor: pointer;
+      border: none;
+      transition: background .2s, transform .2s;
+    }
+    .no-results-btn:hover { background: var(--coral-dark); transform: translateY(-2px); }
+
+    /* ============================================================
+       BACK LINK
+    ============================================================ */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: var(--ff-mono);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--coral); }
+
+    /* ============================================================
+       BLOG SECTION SPACING
+    ============================================================ */
+    #todosView { padding-bottom: 5rem; }
+    .cat-section:last-child { margin-bottom: 3rem; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .nav { padding: 1.2rem 2.5rem; }
+      .blog-hero { padding: 8rem 2.5rem 5rem; }
+      .filter-inner { padding: .9rem 2rem; }
+      .featured-wrap { padding: 3rem 2rem 1rem; grid-template-columns: 1fr; gap: 2.5rem; }
+      .sidebar-picks { position: static; }
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-img { aspect-ratio: 16/9; }
+      .featured-body { padding: 2rem; }
+      .cat-section-inner { padding: 0 2rem; }
+      .posts-row { grid-template-columns: repeat(2, 1fr); }
+      .posts-row--3 { grid-template-columns: repeat(2, 1fr); }
+      .filtered-view, .search-results-view { padding: 2rem 2rem 4rem; }
+      .filtered-grid, .search-results-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .footer { padding: 4rem 2.5rem 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-ham { display: flex; }
+      .mob-menu { display: block; }
+      .nav { padding: 1.1rem 1.5rem; }
+      .blog-hero { padding: 7rem 1.5rem 4.5rem; }
+      .filter-inner { padding: .8rem 1.2rem; gap: .8rem; }
+      .search-input { width: 120px; }
+      .featured-wrap { padding: 2rem 1.2rem 1rem; }
+      .sidebar-picks { padding: 1.8rem 1.5rem 1rem; }
+      .cat-section-inner { padding: 0 1.2rem; }
+      .posts-row { grid-template-columns: 1fr; }
+      .posts-row--3 { grid-template-columns: 1fr; }
+      .cat-section-title { font-size: 1.6rem; }
+      .filtered-view, .search-results-view { padding: 2rem 1.2rem 4rem; }
+      .filtered-title { font-size: 2.5rem; }
+      .filtered-grid, .search-results-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer { padding: 3rem 1.5rem 2rem; }
+      .footer-bar { flex-direction: column; gap: .5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      [data-aos] { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
 </head>
 <body>
 
-  <header class="nav siteNav" id="header"></header>
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
 
-<div style="background:white; border-bottom:1px solid var(--border);">
-  <div class="filter-bar">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Buscar artículos...">
+  <div id="site-header"></div>
+
+  <!-- ============================================================
+       BLOG HERO
+  ============================================================ -->
+  <section class="blog-hero">
+    <div class="blog-hero-inner">
+      
     </div>
-    <div class="filter-tags" id="filterTags">
-      <span class="filter-tag active" data-tag="Todos">Todos</span>
-      <span class="filter-tag" data-tag="Comunicación">Comunicación</span>
-      <span class="filter-tag" data-tag="Familia">Familia</span>
-      <span class="filter-tag" data-tag="Autoestima">Autoestima</span>
-      <span class="filter-tag" data-tag="Adolescencia">Adolescencia</span>
-      <span class="filter-tag" data-tag="Emociones">Emociones</span>
-      <span class="filter-tag" data-tag="Coaching">Coaching</span>
-      <span class="filter-tag" data-tag="Liderazgo">Liderazgo</span>
+  </section>
+
+  <!-- ============================================================
+       FILTER BAR — Sticky
+  ============================================================ -->
+  <div class="filter-wrap" id="filterWrap">
+    <div class="filter-inner">
+      <!-- Search -->
+      <div class="search-box">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#555" stroke-width="1.8">
+          <circle cx="7" cy="7" r="5"/>
+          <path d="M11 11l3 3"/>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Buscar artículos...">
+      </div>
+      <!-- Category pills -->
+      <div class="pills" id="pillsContainer">
+        <button class="pill active" data-cat="todos">Todos</button>
+        <button class="pill" data-cat="comunicacion">Comunicación</button>
+        <button class="pill" data-cat="familia">Familia</button>
+        <button class="pill" data-cat="emociones">Emociones</button>
+        <button class="pill" data-cat="adolescencia">Adolescencia</button>
+        <button class="pill" data-cat="autoestima">Autoestima</button>
+        <button class="pill" data-cat="relaciones">Relaciones</button>
+        <button class="pill" data-cat="sexualidad">Sexualidad</button>
+        <button class="pill" data-cat="redes-sociales">Redes sociales</button>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="blog-layout">
-  <main>
-    <div id="featuredSlot"></div>
-    <div class="posts-grid" id="postsGrid"></div>
-    <div class="load-more-wrap">
-      <button class="btn-load" id="loadMoreBtn" onclick="loadMore()">Ver más artículos</button>
+  <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+  <main id="mainContent">
+
+    <!-- ── TODOS VIEW ────────────────────────── -->
+    <div id="todosView">
+
+      <!-- Featured (latest) post + sidebar -->
+    <section class="featured-wrap">
+      <div class="featured-main" id="featuredMain">
+        <div class="featuredPost" data-aos="fade-up" data-aos-duration="900"></div>
+        <div class="featuredPost" data-aos="fade-up" data-aos-duration="900"></div>
+        <div class="featuredPost" data-aos="fade-up" data-aos-duration="900"></div>
+      </div>
+
+      <aside class="sidebar-picks" id="sidebarPicks" data-aos="fade-up" data-aos-duration="900" data-aos-delay="150"></aside>
+    </section>
+
+    <div class="show-more-wrap">
+      <button id="showMoreBtn" class="show-more-btn">Show More</button>
     </div>
+
+    
+      <!-- Collections -->
+      <section class="collections-section">
+        <div class="collections-header">
+          <h2>Collections</h2>
+        </div>
+
+        <div class="collections-grid">
+          
+          <div class="collection-card" onclick="filterCategory('comunicacion')" style="background-image: url('./images/newsImg/blog-8422.jpg'); background-position: right;">
+            <div class="collection-overlay">
+              <h3>Comunicación</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('familia')" style="background-image: url('./images/newsImg/blog-81522.jpg');" >
+            <div class="collection-overlay">
+              <h3>Familia</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('emociones')" style="background-image: url('./images/newsImg/blog-41321.jpg');" >
+            <div class="collection-overlay">
+              <h3>Emociones</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('adolescencia')" style="background-image: url('./images/newsImg/blog-122920.jpg');" >
+            <div class="collection-overlay">
+              <h3>Adolescencia</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('autoestima')" style="background-image: url('./images/newsImg/blog-122920.jpg');" >
+            <div class="collection-overlay">
+              <h3>Autoestima</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('relaciones')" style="background-image: url('./images/newsImg/blog-21720.jpg');" >
+            <div class="collection-overlay">
+              <h3>Relaciones</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('sexualidad')" style="background-image: url('./images/newsImg/blog-2819.jpg');" >
+            <div class="collection-overlay">
+              <h3>Sexualidad</h3>
+            </div>
+          </div>
+
+          <div class="collection-card" onclick="filterCategory('redes-sociales')" style="background-image: url('./images/newsImg/blog-10918.jpeg'); background-position: center;" >
+            <div class="collection-overlay">
+              <h3>Redes Sociales</h3>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- Category sections -->
+      <div id="catSections"></div>
+    </div>
+
+    <!-- ── FILTERED VIEW ─────────────────────── -->
+    <div id="filteredView" style="display:none">
+      <div class="filtered-view">
+        <button class="back-link" onclick="filterCategory('todos')">
+          ← Volver a todos
+        </button>
+        <div class="filtered-hd">
+          <span class="filtered-eye">Categoría</span>
+          <h2 class="filtered-title" id="filteredTitle"></h2>
+          <span class="filtered-count" id="filteredCount"></span>
+        </div>
+        <div class="filtered-grid" id="filteredGrid"></div>
+      </div>
+    </div>
+
+    <!-- ── SEARCH RESULTS ────────────────────── -->
+    <div id="searchView" style="display:none">
+      <div class="search-results-view">
+        <div class="search-results-hd">
+          <h2 class="search-results-title">Resultados para: <span id="searchTerm"></span></h2>
+        </div>
+        <div class="search-results-grid" id="searchGrid"></div>
+      </div>
+    </div>
+
+    <!-- ── NO RESULTS ────────────────────────── -->
+    <div id="noResults" style="display:none" class="no-results">
+      <div class="no-results-emoji">🔍</div>
+      <h3 class="no-results-title">Sin resultados</h3>
+      <p class="no-results-sub">No encontramos artículos con esa búsqueda.<br>Prueba con otro término o explora las categorías.</p>
+      <button class="no-results-btn" onclick="clearFilter()">Ver todos los artículos</button>
+    </div>
+
   </main>
 
-  <aside class="sidebar">
-    <div class="sidebar-card">
-      <p class="sidebar-title">Buscar</p>
-      <div class="sidebar-search">
-        <span class="s-icon">🔍</span>
-        <input type="text" id="sidebarSearch" placeholder="Buscar en el blog...">
-      </div>
-    </div>
-    <div class="sidebar-card">
-      <p class="sidebar-title">Entradas recientes</p>
-      <div class="recent-list" id="recentList"></div>
-    </div>
-    <div class="sidebar-card">
-      <p class="sidebar-title">Temas</p>
-      <div class="tags-cloud" id="tagsCloud"></div>
-    </div>
-  </aside>
-</div>
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" id="footer"></footer>
 
-  <div id="cta"></div>
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
-  <footer id="footer"></footer>
+  <script>
+  /* ──────────────────────────────────────────
+     DATA
+  ────────────────────────────────────────── */
+  const newsPosts = [
+    {
+      newImg: 'images/newsImg/blog-8422.jpg',
+      nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN',
+      date: 'Ago 4, 2022',
+      firstParagraph: 'Definitivamente establecer una buena relación con los hijos adolescentes es todo un reto que suele ser arduo, agotador, pareciera que la conexión con nuestros hijos y tener un día sin novedad es casi imposible...',
+      tags: [{ cat: 'Comunicación', color: '#d4684b' }, { cat: 'Familia', color: '#1a587f' }],
+      linkPost: '/piensogrande/news/new8422.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-81522.jpg',
+      nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN 2',
+      date: 'Ago 15, 2022',
+      firstParagraph: 'En esta PARTE 2 de "Hijos adolescentes, 15 maneras de mejorar la relación" continuamos hablando sobre cómo lograr conectarnos a nivel emocional...',
+      tags: [{ cat: 'Comunicación', color: '#d4684b' }, { cat: 'Familia', color: '#1a587f' }],
+      linkPost: '/piensogrande/news/new81522.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-41321.jpg',
+      nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 1',
+      date: 'Abr 13, 2021',
+      firstParagraph: 'Cuando queremos decir algo, pocas veces nos detenemos a pensar en el efecto que tendrán nuestras palabras en quien tiene la intención de escucharnos...',
+      tags: [{ cat: 'Comunicación', color: '#d4684b' }, { cat: 'Emociones', color: '#e39b48' }],
+      linkPost: '/piensogrande/news/new41321.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-41921.jpg',
+      nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 2',
+      date: 'Abr 19, 2021',
+      firstParagraph: 'En esta segunda parte seguiremos indagando sobre cómo conseguir la armonía entre lo que sentimos y decimos...',
+      tags: [{ cat: 'Comunicación', color: '#d4684b' }, { cat: 'Emociones', color: '#e39b48' }, { cat: 'Familia', color: '#1a587f' }],
+      linkPost: '/piensogrande/news/new41921.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-122920.jpg',
+      nameNew: 'Los adolescentes frente a la pandemia, retos para el 2021',
+      date: 'Dic 29, 2020',
+      firstParagraph: 'La adolescencia es una etapa cargada de grandes cambios tanto físicos como psicológicos y si a eso le sumamos todos los cambios...',
+      tags: [{ cat: 'Adolescencia', color: '#987a01' }, { cat: 'Autoestima', color: '#1a587f' }],
+      linkPost: '/piensogrande/news/new122920.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-21720.jpg',
+      nameNew: 'Ruptura amorosa en la adolescencia: cómo ayudar a tu hijo a superarlo',
+      date: 'Feb 17, 2020',
+      firstParagraph: 'En el transcurso de la adolescencia muchos experimentamos el primer amor, todo parece maravilloso con una atmósfera cargada de sueños y romanticismo...',
+      tags: [{ cat: 'Relaciones', color: '#987a01' }, { cat: 'Sexualidad', color: '#e39b48' }],
+      linkPost: '/piensogrande/news/new21720.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-21919.jpg',
+      nameNew: 'El noviazgo en la adolescencia. Una guía para los padres',
+      date: 'Feb 19, 2019',
+      firstParagraph: 'Nuestro adolescente tiene novio y ahora la pregunta es ¿Qué hacemos? Si tuvimos la ventaja que nos lo contara eso quiere decir que hemos hecho las cosas bien...',
+      tags: [{ cat: 'Emociones', color: '#e39b48' }, { cat: 'Sexualidad', color: '#d4684b' }],
+      linkPost: '/piensogrande/news/new21919.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-2819.jpg',
+      nameNew: 'El primer amor en la adolescencia',
+      date: 'Feb 8, 2019',
+      firstParagraph: '¿Quién no recuerda su primer amor? Yo por lo menos recuerdo el mío con mucha ternura, fue un amor muy romántico, realmente especial...',
+      tags: [{ cat: 'Emociones', color: '#e39b48' }, { cat: 'Sexualidad', color: '#987a01' }],
+      linkPost: '/piensogrande/news/new2819.html'
+    },
+    {
+      newImg: 'images/newsImg/blog-10918.jpeg',
+      nameNew: 'Fotos y videos de los adolescentes en las redes sociales',
+      date: 'Oct 9, 2018',
+      firstParagraph: 'Las redes sociales se han convertido en la plataforma que los adolescentes utilizan para postularse a la popularidad...',
+      tags: [{ cat: 'Redes sociales', color: '#d4684b' }, { cat: 'Sexualidad', color: '#987a01' }],
+      linkPost: '/piensogrande/news/new10918.html'
+    }
+  ];
 
-<script>
-// ─── CARD COLORS (cycle through for variety) ───
-const cardColors = [
-  'linear-gradient(145deg,#F9CAAE,#EDB898)',
-  'linear-gradient(145deg,#C5D8E8,#A8C4D8)',
-  'linear-gradient(145deg,#F5DEB3,#E8C485)',
-  'linear-gradient(145deg,#D8E8C5,#B8D4A0)',
-  'linear-gradient(145deg,#E8C5D4,#D4A0B8)',
-  'linear-gradient(145deg,#C5D4E8,#A0B8D4)',
-];
-const cardEmojis = ['📸','📘','💛','🌱','💗','🧠','✨','💙','🌸','🍃'];
+  /* ──────────────────────────────────────────
+     CATEGORY CONFIG
+     Order + colors for each category pill
+  ────────────────────────────────────────── */
+  const catConfig = {
+    'todos':         { label: 'Todos',          color: '#d4684b' },
+    'comunicacion':  { label: 'Comunicación',   color: '#d4684b' },
+    'familia':       { label: 'Familia',         color: '#1a587f' },
+    'emociones':     { label: 'Emociones',       color: '#e39b48' },
+    'adolescencia':  { label: 'Adolescencia',    color: '#987a01' },
+    'autoestima':    { label: 'Autoestima',      color: '#1a587f' },
+    'relaciones':    { label: 'Relaciones',      color: '#987a01' },
+    'sexualidad':    { label: 'Sexualidad',      color: '#d4684b' },
+    'redes-sociales':{ label: 'Redes sociales',  color: '#d4684b' }
+  };
 
-// ─── DATA ───
-const newsPosts = [
-  {
-    newImg: 'images/newsImg/blog-8422.jpg',
-    nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN',
-    date: 'Ago 4, 2022',
-    firstParagraph: 'Definitivamente establecer una buena relación con los hijos adolescentes es todo un reto que suele ser arduo, agotador, pareciera que la conexión con nuestros hijos y tener un día sin novedad es casi imposible. Esto es porque durante la adolescencia se viven una serie de cambios importantes...',
-    tags: [
-      { cat: 'Comunicación', color: '#d4684b' },
-      { cat: 'Familia', color: '#1a587f' }
-    ],
-    linkPost: '/piensogrande/news/new8422.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-81522.jpg',
-    nameNew: 'HIJOS ADOLESCENTES: 15 MANERAS DE MEJORAR LA RELACIÓN 2',
-    date: 'Ago 15, 2022',
-    firstParagraph: 'En esta PARTE 2 de “Hijos adolescentes, 15 maneras de mejorar la relación” continuamos hablando sobre cómo lograr conectarnos a nivel emocional...',
-    tags: [
-      { cat: 'Comunicación', color: '#d4684b' },
-      { cat: 'Familia', color: '#1a587f' }
-    ],
-    linkPost: '/piensogrande/news/new81522.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-41321.jpg',
-    nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 1',
-    date: 'Abr 13, 2021',
-    firstParagraph: 'Cuando queremos decir algo, pocas veces nos detenemos a pensar en el efecto que tendrán nuestras palabras en quien tiene la intención de escucharnos...',
-    tags: [
-      { cat: 'Comunicación', color: '#d4684b' },
-      { cat: 'Emociones', color: '#e39b48' }
-    ],
-    linkPost: '/piensogrande/news/new41321.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-41921.jpg',
-    nameNew: 'Las emociones y la comunicación. Logra una comunicación de éxito. 2',
-    date: 'Abr 19, 2021',
-    firstParagraph: 'En esta segunda parte de “las emociones y la comunicación. Logra una comunicación de éxito” seguiremos indagando sobre cómo conseguir la armonía entre lo que sentimos y decimos...',
-    tags: [
-      { cat: 'Comunicación', color: '#d4684b' },
-      { cat: 'Emociones', color: '#1a587f' },
-      { cat: 'Familia', color: '#1a587f' }
-    ],
-    linkPost: '/piensogrande/news/new41921.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-122920.jpg',
-    nameNew: 'Los adolescentes frente a la pandemia, retos para el 2021',
-    date: 'Dic 29, 2020',
-    firstParagraph: 'La adolescencia es una etapa cargada de grandes cambios tanto físicos como psicológicos y si a eso le sumamos todos los cambios...',
-    tags: [
-      { cat: 'Adolescencia', color: '#987a01' },
-      { cat: 'Autoestima', color: '#1a587f' }
-    ],
-    linkPost: '/piensogrande/news/new122920.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-21720.jpg',
-    nameNew: 'Ruptura amorosa en la adolescencia: cómo ayudar a tu hijo a superarlo',
-    date: 'Feb 17, 2020',
-    firstParagraph: 'En el transcurso de la adolescencia muchos experimentamos el primer amor, todo parece maravilloso con una atmósfera cargada de sueños y romanticismo...',
-    tags: [
-      { cat: 'Relaciones', color: '#987a01' },
-      { cat: 'Sexualidad', color: '#e39b48' }
-    ],
-    linkPost: '/piensogrande/news/new21720.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-21919.jpg',
-    nameNew: 'El noviazgo en la adolescencia. Una guía para los padres',
-    date: 'Feb 19, 2019',
-    firstParagraph: 'Nuestro adolescente tiene novio y ahora la pregunta es ¿Qué hacemos? Si tuvimos la ventaja que nos lo contara eso quiere decir que hemos hecho las cosas bien en el plano de la confianza y el respeto...',
-    tags: [
-      { cat: 'Emociones', color: '#1a587f' },
-      { cat: 'Sexualidad', color: '#d4684b' }
-    ],
-    linkPost: '/piensogrande/news/new21919.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-2819.jpg',
-    nameNew: 'El primer amor en la adolescencia',
-    date: 'Feb 8, 2019',
-    firstParagraph: '¿Quién no recuerda su primer amor?  Yo por lo menos recuerdo el mío con mucha ternura, fue un amor muy romántico, realmente especial, mi primer beso, mi primera ilusión...',
-    tags: [
-      { cat: 'Emociones', color: '#d4684b' },
-      { cat: 'Sexualidad', color: '#987a01' }
-    ],
-    linkPost: '/piensogrande/news/new2819.html'
-  },
-  {
-    newImg: 'images/newsImg/blog-10918.jpeg',
-    nameNew: 'Fotos y videos de los adolescentes en las redes sociales',
-    date: 'Oct 9, 2018',
-    firstParagraph: 'Las redes sociales se han convertido en la plataforma que los adolescentes utilizan para postularse a la popularidad...',
-    tags: [ 
-      { cat: 'Redes sociales', color: '#d4684b' },
-      { cat: 'Sexualidad', color: '#987a01' }
-    ],
-    linkPost: '/piensogrande/news/new10918.html'
-  },
-];
-
-// ─── STATE ───
-const POSTS_PER_PAGE = 6;
-let currentFilter = 'Todos';
-let currentSearch = '';
-let visibleCount = POSTS_PER_PAGE;
-
-// ─── HELPERS ───
-function getFiltered() {
-  return newsPosts.filter((p, i) => {
-    const matchTag = currentFilter === 'Todos' || p.tags.some(t => t.cat === currentFilter);
-    const q = currentSearch.toLowerCase();
-    const matchSearch = !q || p.nameNew.toLowerCase().includes(q) || p.firstParagraph.toLowerCase().includes(q) || p.tags.some(t => t.cat.toLowerCase().includes(q));
-    return matchTag && matchSearch;
-  });
-}
-
-function tagHTML(tag) {
-  return `<span class="post-tag" style="color:${tag.color}">${tag.cat}</span>`;
-}
-
-function imgHTML(post, index, large = false) {
-  const color = cardColors[index % cardColors.length];
-  const emoji = cardEmojis[index % cardEmojis.length];
-  if (post.newImg) {
-    return `<img src="${post.newImg}" alt="${post.nameNew}" onerror="this.style.display='none';this.parentNode.querySelector('.img-placeholder').style.display='flex'">
-            <div class="img-placeholder" style="display:none"><span class="ph-icon">${emoji}</span></div>`;
-  }
-  return `<div class="img-placeholder" style="background:${color}"><span class="ph-icon">${emoji}</span></div>`;
-}
-
-// ─── RENDER ───
-function render() {
-  const filtered = getFiltered();
-  const featuredSlot = document.getElementById('featuredSlot');
-  const postsGrid = document.getElementById('postsGrid');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-
-  if (filtered.length === 0) {
-    featuredSlot.innerHTML = '';
-    postsGrid.innerHTML = `<div class="empty-state"><div class="empty-icon">🔍</div><h3>Sin resultados</h3><p>No encontramos artículos con ese criterio. Intenta con otra búsqueda.</p></div>`;
-    loadMoreBtn.style.display = 'none';
-    renderRecent(newsPosts);
-    return;
+  /* ──────────────────────────────────────────
+     UTILITIES
+  ────────────────────────────────────────── */
+  function slugify(str) {
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/\s+/g, '-');
   }
 
-  // Featured = first result
-  const featured = filtered[0];
-  featuredSlot.innerHTML = `
-    <a class="featured-post" href="${featured.linkPost}">
-      <div class="featured-img">
-        ${imgHTML(featured, 0, true)}
-        <span class="featured-badge">Destacado</span>
-      </div>
-      <div class="featured-body">
-        <div class="post-tags">${featured.tags.map(tagHTML).join('')}</div>
-        <h2>${featured.nameNew}</h2>
-        <p>${featured.firstParagraph}</p>
-        <div class="post-meta"><span>${featured.date}</span><span class="meta-dot"></span><span>5 min de lectura</span></div>
-        <span class="read-link">Leer artículo →</span>
-      </div>
-    </a>`;
+  function formatTitle(str) {
+    // All-caps → sentence case
+    if (!str) return '';
+    if (str === str.toUpperCase()) {
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+    return str;
+  }
 
-  // Grid = rest, up to visibleCount
-  const rest = filtered.slice(1, visibleCount + 1);
-  if (rest.length === 0) {
-    postsGrid.innerHTML = '';
-  } else {
-    postsGrid.innerHTML = rest.map((p, i) => `
-      <a class="post-card" href="${p.linkPost}">
-        <div class="card-img">
-          ${imgHTML(p, i + 1)}
+  function getPostCats(post) {
+    return post.tags.map(t => slugify(t.cat));
+  }
+
+  function getPostsForCat(cat) {
+    if (cat === 'todos') return newsPosts;
+    return newsPosts.filter(p => getPostCats(p).includes(cat));
+  }
+
+  /* ──────────────────────────────────────────
+     CARD HTML BUILDERS
+  ────────────────────────────────────────── */
+  function buildPostCard(post, aosDelay = 0, aosAnim = 'fade-up') {
+    const tagsHtml = post.tags.map(t =>
+      `<span class="post-tag" style="background:${t.color}18;color:${t.color}">${t.cat}</span>`
+    ).join('');
+
+    const title = formatTitle(post.nameNew);
+    const gradient = `background:linear-gradient(135deg,${post.tags[0]?.color || '#d4684b'}44,${post.tags[1]?.color || '#e39b48'}44)`;
+
+    return `
+      <a href="${post.linkPost}" class="post-card" data-aos="${aosAnim}" data-aos-delay="${aosDelay}" data-aos-duration="700">
+        <div class="post-card-img" style="${gradient}">
+          <img
+            src="${post.newImg}"
+            alt="${title}"
+            loading="lazy"
+            onerror="this.parentElement.style.cssText='${gradient};width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;'; this.remove();">
         </div>
-        <div class="card-body">
-          <div class="post-tags">${p.tags.map(tagHTML).join('')}</div>
-          <h3>${p.nameNew}</h3>
-          <p>${p.firstParagraph}</p>
-          <div class="card-footer">
-            <span class="card-date">${p.date}</span>
-            <span class="card-arrow">→</span>
+        <div class="post-card-body">
+          <div class="post-tags">${tagsHtml}</div>
+          <h3 class="post-card-title">${title}</h3>
+          <p class="post-card-excerpt">${post.firstParagraph}</p>
+          <div class="post-card-footer">
+            <span class="post-date">${post.date}</span>
+            <span class="post-card-arrow">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 6h10M6 1l5 5-5 5"/>
+              </svg>
+            </span>
           </div>
         </div>
-      </a>`).join('');
+      </a>`;
   }
 
-  // Load more
-  const totalShown = 1 + rest.length;
-  if (totalShown >= filtered.length) {
-    loadMoreBtn.style.display = 'none';
-  } else {
-    loadMoreBtn.style.display = 'inline-block';
+  function buildFeaturedCard(post) {
+    const tagsHtml = post.tags.map(t =>
+      `<span class="post-tag" style="background:${t.color}18;color:${t.color}">${t.cat}</span>`
+    ).join('');
+    const title = formatTitle(post.nameNew);
+    const gradient = `background:linear-gradient(135deg,${post.tags[0]?.color || '#d4684b'}55,${post.tags[1]?.color || '#1a587f'}55)`;
+
+    return `
+      <a href="${post.linkPost}" class="featured-card">
+        <div class="featured-img" style="${gradient}">
+          <span class="featured-badge">Destacado</span>
+          <img
+            src="${post.newImg}"
+            alt="${title}"
+            loading="lazy"
+            onerror="this.parentElement.style.cssText='${gradient};'; this.remove();">
+        </div>
+        <div class="featured-body">
+          <div class="post-tags">${tagsHtml}</div>
+          <h2 class="featured-title">${title}</h2>
+          <p class="featured-excerpt">${post.firstParagraph}</p>
+          <div class="featured-meta">
+            <span class="post-date">${post.date} · 5 min de lectura</span>
+            <span class="read-link">Leer artículo <span>→</span></span>
+          </div>
+        </div>
+      </a>`;
   }
 
-  renderRecent(filtered);
-}
+  function buildSidebarPick(post) {
+    const tag = post.tags[0] || { cat: '', color: '#d4684b' };
+    const title = formatTitle(post.nameNew);
+    return `
+      <a href="${post.linkPost}" class="sidebar-pick">
+        <span class="sidebar-pick-cat" style="color:${tag.color}">${tag.cat}</span>
+        <span class="sidebar-pick-title">${title}</span>
+      </a>`;
+  }
 
-function renderRecent(posts) {
-  const list = document.getElementById('recentList');
-  list.innerHTML = posts.slice(0, 5).map(p => `
-    <a class="recent-item" href="#">
-      <div class="recent-info">
-        <div class="recent-title">${p.nameNew}</div>
-        <div class="recent-date">${p.date}</div>
+  /* ──────────────────────────────────────────
+     RENDER FUNCTIONS
+  ────────────────────────────────────────── */
+  let visibleFeatured = 3;
+  document.getElementById('showMoreBtn').addEventListener('click', () => {
+  visibleFeatured += 3;
+  renderFeatured();
+});
+
+  function renderFeatured() {
+    const container = document.getElementById('featuredMain');
+
+    const postsToShow = newsPosts.slice(0, visibleFeatured);
+
+    container.innerHTML = postsToShow.map(post => `
+      <div class="featuredPost" data-aos="fade-up" data-aos-duration="900">
+        ${buildFeaturedCard(post)}
       </div>
-    </a>`).join('');
-}
+    `).join('');
 
-function renderTags() {
-  const allTags = [...new Set(newsPosts.flatMap(p => p.tags.map(t => t.cat)))];
-  document.getElementById('tagsCloud').innerHTML = allTags.map(t =>
-    `<a class="tag-pill" href="#" onclick="setFilter('${t}');return false;">${t}</a>`
-  ).join('');
-}
+    const btn = document.getElementById('showMoreBtn');
 
-// ─── EVENTS ───
-function setFilter(tag) {
-  currentFilter = tag;
-  visibleCount = POSTS_PER_PAGE;
-  document.querySelectorAll('.filter-tag').forEach(el => {
-    el.classList.toggle('active', el.dataset.tag === tag);
+    if (visibleFeatured >= newsPosts.length) {
+      btn.style.display = 'none';
+    } else {
+      btn.style.display = 'inline-block';
+    }
+
+    setTimeout(() => AOS.refresh(), 100);
+  }
+  function renderSidebarPicks() {
+    const el = document.getElementById('sidebarPicks');
+    if (!el) return;
+
+    // Los siguientes artículos más recientes, después de los 3 ya destacados arriba
+    const picks = newsPosts.slice(3, 8);
+
+    el.innerHTML = `
+      <h3 class="sidebar-picks-title">Top picks</h3>
+      ${picks.map(buildSidebarPick).join('')}
+    `;
+  }
+
+  function renderCatSections() {
+    // Only sections with 2+ posts get their own section
+    const mainCats = ['comunicacion', 'familia', 'emociones', 'sexualidad'];
+    const container = document.getElementById('catSections');
+
+    let html = '';
+    mainCats.forEach(catKey => {
+      const cat = catConfig[catKey];
+      if (!cat) return;
+      const posts = getPostsForCat(catKey);
+      if (posts.length < 2) return;
+
+      const colClass = posts.length >= 4 ? 'posts-row' : 'posts-row posts-row--3';
+      const displayPosts = posts.slice(0, 4);
+
+      const cardsHtml = displayPosts.map((post, i) =>
+        `<div>${buildPostCard(post, i * 80, 'fade-up')}</div>`
+      ).join('');
+
+      html += `
+        <section class="cat-section" id="cat-${catKey}">
+          <div class="cat-section-inner">
+            <div class="cat-section-hd" data-aos="fade-right" data-aos-duration="600">
+              <div class="cat-section-hd-left">
+                <span class="cat-dot" style="background:${cat.color}"></span>
+                <h2 class="cat-section-title" style="color:${cat.color}">${cat.label}</h2>
+              </div>
+              <button class="cat-see-all" onclick="filterCategory('${catKey}')">
+                Ver todos
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 6h10M6 1l5 5-5 5"/>
+                </svg>
+              </button>
+            </div>
+            <div class="${colClass}">${cardsHtml}</div>
+          </div>
+        </section>`;
+    });
+
+    container.innerHTML = html;
+  }
+
+  function renderFiltered(cat) {
+    const cfg = catConfig[cat];
+    const posts = getPostsForCat(cat);
+
+    // Heading
+    document.getElementById('filteredTitle').textContent = cfg?.label || cat;
+    document.getElementById('filteredTitle').style.color = cfg?.color || 'var(--dark)';
+    const count = posts.length;
+    document.getElementById('filteredCount').textContent =
+      count === 1 ? '1 artículo' : `${count} artículos`;
+
+    // Grid
+    const grid = document.getElementById('filteredGrid');
+    grid.innerHTML = posts.map((p, i) => buildPostCard(p, i * 80, 'fade-up')).join('');
+
+    // Rebind AOS on new elements
+    setTimeout(() => AOS.refresh(), 50);
+  }
+
+  function renderSearchResults(query) {
+    const q = query.toLowerCase().trim();
+    const matches = newsPosts.filter(p =>
+      p.nameNew.toLowerCase().includes(q) ||
+      p.firstParagraph.toLowerCase().includes(q) ||
+      p.tags.some(t => t.cat.toLowerCase().includes(q))
+    );
+
+    document.getElementById('searchTerm').textContent = `"${query}"`;
+    const grid = document.getElementById('searchGrid');
+
+    if (matches.length === 0) {
+      return false; // signal no results
+    }
+
+    grid.innerHTML = matches.map((p, i) => buildPostCard(p, i * 60, 'fade-up')).join('');
+    setTimeout(() => AOS.refresh(), 50);
+    return true;
+  }
+
+  /* ──────────────────────────────────────────
+     FILTER & SWITCH VIEWS
+  ────────────────────────────────────────── */
+  let activeCategory = 'todos';
+  let searchMode = false;
+
+  function switchView(show) {
+    document.getElementById('todosView').style.display    = show === 'todos'   ? '' : 'none';
+    document.getElementById('filteredView').style.display = show === 'filtered'? '' : 'none';
+    document.getElementById('searchView').style.display   = show === 'search'  ? '' : 'none';
+    document.getElementById('noResults').style.display    = show === 'empty'   ? '' : 'none';
+  }
+
+  async function filterCategory(cat) {
+    activeCategory = cat;
+    searchMode = false;
+
+    // Clear search input
+    document.getElementById('searchInput').value = '';
+
+    // Update pill active state
+    document.querySelectorAll('.pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.cat === cat);
+    });
+
+    // Scroll to top of the page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Fade out
+    const mc = document.getElementById('mainContent');
+    mc.classList.add('fading');
+
+    await new Promise(r => setTimeout(r, 250));
+
+    if (cat === 'todos') {
+      switchView('todos');
+    } else {
+      switchView('filtered');
+      renderFiltered(cat);
+    }
+
+    mc.classList.remove('fading');
+    AOS.refreshHard();
+  }
+
+  function clearFilter() {
+    filterCategory('todos');
+  }
+
+  /* ──────────────────────────────────────────
+     SEARCH
+  ────────────────────────────────────────── */
+  let searchTimer = null;
+
+  document.getElementById('searchInput').addEventListener('input', e => {
+    clearTimeout(searchTimer);
+    const q = e.target.value.trim();
+
+    if (!q) {
+      // Back to whatever state was before
+      filterCategory(activeCategory);
+      return;
+    }
+
+    searchTimer = setTimeout(async () => {
+      searchMode = true;
+
+      // Clear pill active states
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+
+      const mc = document.getElementById('mainContent');
+      mc.classList.add('fading');
+      await new Promise(r => setTimeout(r, 220));
+
+      const found = renderSearchResults(q);
+      switchView(found ? 'search' : 'empty');
+
+      mc.classList.remove('fading');
+      AOS.refreshHard();
+    }, 300);
   });
-  document.querySelectorAll('#tagsCloud .tag-pill').forEach(el => {
-    el.classList.toggle('active', el.textContent === tag);
+
+  /* ──────────────────────────────────────────
+     PILL CLICK EVENTS
+  ────────────────────────────────────────── */
+  document.querySelectorAll('.pill').forEach(btn => {
+    btn.addEventListener('click', () => filterCategory(btn.dataset.cat));
   });
-  render();
-}
 
-function loadMore() {
-  visibleCount += POSTS_PER_PAGE;
-  render();
-}
+  /* ──────────────────────────────────────────
+     INIT
+  ────────────────────────────────────────── */
+  // Initialize AOS
+  AOS.init({
+    duration: 700,
+    once: true,
+    easing: 'ease-out-cubic',
+    offset: 60
+  });
 
-document.querySelectorAll('.filter-tag').forEach(el => {
-  el.addEventListener('click', () => setFilter(el.dataset.tag));
-});
+  // Render initial content
+  renderFeatured();
+  renderSidebarPicks();
+  renderCatSections();
 
-let searchTimer;
-function handleSearch(val) {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(() => {
-    currentSearch = val;
-    visibleCount = POSTS_PER_PAGE;
-    render();
-  }, 250);
-}
+  // Trigger AOS on newly rendered items
+  setTimeout(() => AOS.refresh(), 100);
 
-document.getElementById('searchInput').addEventListener('input', e => {
-  document.getElementById('sidebarSearch').value = e.target.value;
-  handleSearch(e.target.value);
-});
-document.getElementById('sidebarSearch').addEventListener('input', e => {
-  document.getElementById('searchInput').value = e.target.value;
-  handleSearch(e.target.value);
-});
+  </script>
 
-// ─── INIT ───
-renderTags();
-render();
-</script>
-
-<script src="./functions/header.js"></script>
-<script src="./functions/footer.js"></script>
+  <script src="./functions/header.js"></script>
+  <script src="./functions/footer.js"></script>
 </body>
 </html>

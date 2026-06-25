@@ -3,577 +3,521 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Servicios — Rosina Peñaranda</title>
-<link rel="stylesheet" href="./styles/header.css">
+<title>Servicios | Pienso Grande®</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./styles/header.css">
+<link rel="stylesheet" href="./styles/footer.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#ffffff;
-    --ink:#15242e;
-    --ink-soft:#5b6a72;
-    --line:#eceae6;
-    --text-dark: #1A1A18;
-    --gold:#fdcd0d;
-    --olive:#987a01;
-    --tan:#e39b48;
-    --blue-deep:#1a587f;
+    --navy:#1a587f;
     --teal:#1c5b82;
-    --teal-dark: #1A587F;
+    --yellow:#fdcd0d;
+    --mustard:#987a01;
+    --tan:#e39b48;
     --terracotta:#d4684b;
     --coral:#ee7d57;
     --salmon:#e99477;
-    --peach:#f4a776;
-    --peach-light:#f9caae;
-
-    --font-display:'Bricolage Grotesque', sans-serif;
-    --font-body:'Inter', sans-serif;
-    --font-mono:'Space Mono', monospace;
-    
-    --ink-soft:rgba(33,26,20,0.64);
-    --ink-faint:rgba(33,26,20,0.42);
-    --sun:#fdcd0d;
-    --line:rgba(33,26,20,0.10);
-    --teal-deep:#1a587f;
-    --teal:#1c5b82;
+    --light-orange:#f4a776;
+    --peach:#f9caae;
+    --cream:#fdf6ee;
+    --ink:#2a2522;
+    --white:#ffffff;
+    --radius-lg:32px;
+    --radius-md:20px;
+    --radius-pill:999px;
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--bg);
+    font-family:'Inter', sans-serif;
     color:var(--ink);
-    font-family:var(--font-body);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
+    background:var(--white);
+    line-height:1.65;
     overflow-x:hidden;
   }
+  h1,h2,h3,h4{
+    font-family:'Poppins', sans-serif;
+    font-weight:700;
+    line-height:1.12;
+    color:var(--navy);
+  }
+  a{text-decoration:none; color:inherit;}
   img{max-width:100%; display:block;}
-  a{color:inherit;text-decoration:none;}
-  ul{margin:0;padding:0;list-style:none;}
-  .wrap{max-width:2000px;margin:0 auto;padding:0 32px;}
-  section{position:relative;}
-
-  a:focus-visible, button:focus-visible{
-    outline:3px solid var(--gold);
-    outline-offset:3px;
-    border-radius:2px;
+  ul{list-style:none;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  :focus-visible{outline:3px solid var(--terracotta); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
   }
 
-  .wrap{ padding-inline: clamp(1.5rem, 6vw, 6rem); }
-  .eyebrow{
-    font-family:var(--font-mono);
-    text-transform:uppercase;
-    letter-spacing:.18em;
-    font-size:.72rem;
-    color:var(--ink-soft);
-  }
-  .eyebrow span{
-    display:inline-block;
-    width:1.4rem; height:2px;
-    background:var(--gold);
-    vertical-align:middle;
-    margin-right:.6rem;
-  }
-  /* ---------- NAV ----------- */
-    .nav{
-    position:sticky;top:0;z-index:50;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px 32px;
-    background:rgba(255,255,255,0);
-    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
-  }
-  .nav.is-scrolled{
-    background:rgba(255,255,255,0.86);
-    backdrop-filter:blur(10px);
-    box-shadow:0 1px 0 var(--line);
-    padding:14px 32px;
-  }
-  .brand{font-family:'Fraunces', serif;font-weight:600;font-size:1.05rem;letter-spacing:-0.01em;}
-  .nav-links{display:flex;gap:32px;font-size:0.94rem;font-weight:600;}
-  .nav-links a{position:relative;padding:4px 0;}
-  .nav-links a::after{
-    content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
-    background:var(--coral);transition:width .25s ease;
-  }
-  .nav-links a:hover::after{width:100%;}
-  .nav-cta{font-size:0.88rem;padding:11px 20px;}
-
-  .btn-primary {
-    background: var(--text-dark);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: var(--teal-dark); }
   /* ---------- HERO ---------- */
   .hero{
-    min-height:62svh;
-    display:flex;
-    align-items:center;
-    padding-block: 11vh 6vh;
-  }
-  .blob{
-    position:absolute;
-    filter:blur(60px);
-    opacity:.5;
-    z-index:0;
-    border-radius:42% 58% 65% 35% / 45% 40% 60% 55%;
-    animation: float 22s ease-in-out infinite alternate;
-  }
-  .blob-1{
-    width:34vw; height:34vw; max-width:460px; max-height:460px;
-    top:-18%; right:-6%;
-    background: radial-gradient(circle at 30% 30%, var(--teal), var(--peach-light) 75%);
-  }
-  .blob-2{
-    width:20vw; height:20vw; max-width:300px; max-height:300px;
-    bottom:-10%; left:4%;
-    background: radial-gradient(circle at 60% 40%, var(--gold), var(--peach) 75%);
-    opacity:.4;
-    animation-delay:-9s;
-  }
-  @keyframes float{
-    0%{ transform: translate(0,0) scale(1); }
-    100%{ transform: translate(-3%, 4%) scale(1.06); }
-  }
-
-  .hero-grid{
-    position:relative; z-index:2;
-    display:grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 2rem 3rem;
-    align-items:end;
-    width:100%;
-  }
-  .hero-title{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size: clamp(2.6rem, 6.4vw, 4.6rem);
-    line-height:1.04;
-    letter-spacing:-.01em;
-    max-width: 14ch;
-  }
-  .hero-title em{
-    font-style:normal;
-    color:var(--terracotta);
-  }
-  .hero-side{
-    border-left: 2px solid var(--gold);
-    padding-left: 1.5rem;
-    margin-bottom: .4rem;
-  }
-  .hero-tagline{
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color:var(--ink-soft);
-    max-width: 34ch;
-  }
-
-  /* ---------- SERVICES LIST ---------- */
-  .story-section{ padding-block: 5rem 5rem; }
-  .section-heading{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size: clamp(2rem, 4.4vw, 3.2rem);
-    margin: .6rem 0 .8rem;
-    max-width: 18ch;
-  }
-  .section-sub{
-    color:var(--ink-soft);
-    max-width:46ch;
-    margin-bottom: 2.5rem;
-  }
-
-  .services-list{
-    display:flex;
-    flex-direction:column;
-    opacity:0;
-    transform: translateY(18px);
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .services-list.is-visible{ opacity:1; transform:translateY(0); }
-
-  .service-row{
     position:relative;
-    display:grid;
-    grid-template-columns: 56px 1fr auto;
-    align-items:start;
-    gap: .6rem 2rem;
-    padding: 2.3rem 0 2.3rem 1.3rem;
-    border-top:1px solid var(--line);
-    transition: padding-left .3s ease;
+    background:var(--navy);
+    overflow:hidden;
+    padding:88px 0 64px;
   }
-  .services-list .service-row:last-child{ border-bottom:1px solid var(--line); }
-  .service-row::before{
-    content:"";
+  .hero-blob{
     position:absolute;
-    left:0; top:0; bottom:0;
-    width:3px;
-    background: var(--row-accent, var(--gold));
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform .35s ease;
+    top:0; right:-8%;
+    width:46%; min-width:340px; height:108%;
+    background:linear-gradient(160deg, var(--coral) 0%, var(--terracotta) 100%);
+    border-radius:0 0 0 220px;
+    opacity:.95;
   }
-  .service-row:hover::before, .service-row:focus-within::before{ transform: scaleY(1); }
-  .service-row:hover, .service-row:focus-within{ padding-left: 1.8rem; }
-
-  .service-num{
-    font-family:var(--font-mono);
-    font-size:.85rem;
-    color: var(--row-accent, var(--ink-soft));
-    padding-top:.4rem;
+  .hero-inner{
+    position:relative; z-index:2;
+    max-width:680px;
   }
-  .service-category{
-    font-family:var(--font-mono);
+  .eyebrow{
+    display:inline-block;
+    font-size:13px; font-weight:700;
+    letter-spacing:0.16em;
     text-transform:uppercase;
-    letter-spacing:.12em;
-    font-size:.68rem;
-    color: var(--row-accent, var(--ink-soft));
-    margin-bottom:.5rem;
-    display:block;
+    color:var(--yellow);
+    margin-bottom:18px;
   }
-  .service-title{
-    font-family:var(--font-display);
+  .hero h1{
+    color:var(--white);
+    font-size:52px;
+    margin-bottom:22px;
+  }
+  .hero h1 .accent{
+    color:var(--yellow);
+  }
+  .hero p.lead{
+    color:#eaf1f6;
+    font-size:18px;
+    max-width:520px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:var(--radius-pill);
     font-weight:700;
-    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
-    margin-bottom:.5rem;
-    transition: color .25s ease;
+    font-size:14.5px;
+    letter-spacing:0.01em;
+    transition:transform .2s, background .2s, color .2s, box-shadow .2s;
+    border:2px solid transparent;
   }
-  .service-row:hover .service-title{ color: var(--row-accent, var(--ink)); }
-  .service-desc{
-    color:var(--ink-soft);
-    max-width: 56ch;
-    font-size:.98rem;
+  .btn-yellow{background:var(--yellow); color:var(--navy);}
+  .btn-yellow:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.18);}
+  .btn-outline-light{border-color:rgba(255,255,255,.55); color:var(--white);}
+  .btn-outline-light:hover{background:rgba(255,255,255,.12); transform:translateY(-2px);}
+  .btn-terracotta{background:var(--terracotta); color:var(--white);}
+  .btn-terracotta:hover{background:var(--navy); transform:translateY(-2px);}
+  .btn-navy{background:var(--navy); color:var(--white);}
+  .btn-navy:hover{background:var(--terracotta); transform:translateY(-2px);}
+
+  /* ---------- QUICK NAV ---------- */
+  .quicknav{
+    background:var(--cream);
+    border-bottom:1px solid #f1e3d2;
   }
-  .service-tag{
-    align-self:start;
-    margin-top:.3rem;
-    font-family:var(--font-mono);
-    font-size:.7rem;
+  .quicknav .wrap{
+    display:flex; gap:14px; flex-wrap:wrap;
+    padding:20px 32px;
+    justify-content:center;
+  }
+  .quicknav a{
+    background:var(--white);
+    border:2px solid var(--peach);
+    color:var(--navy);
+    font-weight:700;
+    font-size:14px;
+    padding:11px 22px;
+    border-radius:var(--radius-pill);
+    transition:all .2s;
+  }
+  .quicknav a:hover{background:var(--terracotta); border-color:var(--terracotta); color:var(--white);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 56px;
+  }
+  .section-head .eyebrow{color:var(--terracotta);}
+  .section-head h2{font-size:38px; margin-bottom:14px; color:var(--navy);}
+  .section-head p{font-size:17px; color:#5c5650;}
+
+  section.block{padding:90px 0;}
+  .bg-cream{background:var(--cream);}
+  .bg-peach{background:var(--peach);}
+
+  /* ---------- SERVICE ROWS ---------- */
+  .service{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+    padding:54px 0;
+    border-bottom:1px solid rgba(26,88,127,.08);
+  }
+  .service:last-child{border-bottom:none;}
+  .service.reverse .service-media{order:2;}
+  .service.reverse .service-content{order:1;}
+
+  .service-media{
+    position:relative;
+    border-radius:var(--radius-lg);
+    min-height:300px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white);
+    font-family:'Poppins', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:0.12em;
     text-transform:uppercase;
-    letter-spacing:.06em;
-    color: var(--row-accent, var(--ink));
+    overflow:hidden;
+  }
+  .service-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:rgba(0,0,0,.06);
+  }
+  .service-media span{position:relative; z-index:2;}
+  .media-1{background:linear-gradient(135deg, var(--navy), var(--teal));}
+  .media-2{background:linear-gradient(135deg, var(--terracotta), var(--coral));}
+  .media-3{background:linear-gradient(135deg, var(--mustard), var(--tan));}
+  .media-4{background:linear-gradient(135deg, var(--teal), var(--navy));}
+  .media-5{background:linear-gradient(135deg, var(--salmon), var(--light-orange));}
+  .media-6{background:linear-gradient(135deg, var(--coral), var(--terracotta));}
+  .media-7{background:linear-gradient(135deg, var(--tan), var(--mustard));}
+  .media-8{background:linear-gradient(135deg, var(--navy), var(--terracotta));}
+
+  .tag-badge{
     display:inline-flex;
     align-items:center;
-    gap:.45rem;
-    white-space:nowrap;
+    gap:8px;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.10em;
+    text-transform:uppercase;
+    padding:7px 16px;
+    border-radius:var(--radius-pill);
+    margin-bottom:18px;
   }
-  .service-tag::before{
-    content:"";
-    width:6px; height:6px;
+  .tag-padres{background:#e9f1f6; color:var(--navy);}
+  .tag-adol{background:#fdeee8; color:var(--terracotta);}
+
+  .service-content h3{font-size:30px; margin-bottom:16px;}
+  .service-content p.desc{font-size:16.5px; color:#4a4540; margin-bottom:22px;}
+
+  .feature-list{margin-bottom:26px;}
+  .feature-list li{
+    display:flex; align-items:flex-start; gap:12px;
+    font-size:15.5px; color:#3d3833;
+    margin-bottom:10px;
+  }
+  .feature-list .dot{
+    flex:0 0 22px; width:22px; height:22px;
     border-radius:50%;
-    background: var(--row-accent, var(--ink));
-    flex-shrink:0;
+    background:var(--terracotta);
+    color:var(--white);
+    font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    margin-top:1px;
+  }
+  .feature-list.ideal .dot{background:var(--mustard);}
+
+  .feature-list-label{
+    font-size:13px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--navy);
+    margin-bottom:12px;
   }
 
-  /* ---------- PROCESS STRIP ---------- */
-  .process{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding-block: 3rem;
+  /* ---------- FEATURED COURSE (ADOLESCENTES) ---------- */
+  .featured{
+    background:linear-gradient(135deg, var(--coral) 0%, var(--terracotta) 100%);
+    border-radius:var(--radius-lg);
+    padding:64px;
+    color:var(--white);
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:50px;
+    align-items:center;
   }
-  .process-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 2rem 3rem;
+  .featured h3{color:var(--white); font-size:36px; margin-bottom:18px;}
+  .featured p.desc{color:rgba(255,255,255,.92); font-size:16.5px; margin-bottom:24px;}
+  .chips{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;}
+  .chip{
+    background:rgba(255,255,255,.16);
+    border:1.5px solid rgba(255,255,255,.5);
+    color:var(--white);
+    font-size:13px; font-weight:600;
+    padding:8px 16px;
+    border-radius:var(--radius-pill);
   }
-  .step{ flex:1 1 220px; }
-  .step .step-num{
-    font-family:var(--font-mono);
-    font-size:.75rem;
-    color:var(--terracotta);
-    margin-bottom:.5rem;
+  .featured .feature-list .dot{background:var(--white); color:var(--terracotta);}
+  .featured .feature-list li{color:var(--white);}
+  .featured-media{
+    min-height:280px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins', sans-serif;
+    font-weight:700; letter-spacing:0.12em;
+    text-transform:uppercase; font-size:14px;
   }
-  .step h4{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size:1.15rem;
-    margin-bottom:.4rem;
+  .featured-media img {
+    border-radius: 20px;
   }
-  .step p{ color:var(--ink-soft); font-size:.92rem; }
+  /* ---------- PERSONALIZADO ---------- */
+  .personal-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  .personal-card{
+    background:var(--white);
+    border:2px solid var(--peach);
+    border-radius:var(--radius-lg);
+    padding:42px;
+  }
+  .personal-card h3{font-size:24px; margin-bottom:14px;}
+  .personal-card p{font-size:15.5px; color:#4a4540; margin-bottom:24px;}
 
   /* ---------- FINAL CTA ---------- */
-  .final-cta{
-    margin:110px auto;
-    max-width:1240px;
-    padding:0 clamp(20px,5vw,64px);
+  .next-steps{
+    background:var(--navy);
+    color:var(--white);
   }
-  .cta-panel{
-    background:linear-gradient(135deg, var(--teal-deep), var(--teal) 55%, #143e58);
-    border-radius:36px;
-    padding:clamp(50px, 7vw, 90px);
-    color:#fff;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:40px;
-    flex-wrap:wrap;
+  .next-steps .section-head h2{color:var(--white);}
+  .next-steps .section-head p{color:#cfe0ea;}
+  .next-steps .section-head .eyebrow{color:var(--yellow);}
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
   }
-  .cta-panel::after{
-    content:"";
-    position:absolute;
-    width:380px; height:380px;
-    border-radius:50%;
-    background:radial-gradient(circle, var(--sun), transparent 70%);
-    opacity:0.25;
-    right:-100px; top:-140px;
+  .step-card{
+    background:rgba(255,255,255,.07);
+    border:1.5px solid rgba(255,255,255,.18);
+    border-radius:var(--radius-md);
+    padding:30px 24px;
+    text-align:center;
+    transition:transform .2s, background .2s;
   }
-.cta-panel h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    max-width: 11ch;
-    position: relative;
-    z-index: 1;
-}
-  .cta-panel .cta-right{
-    position:relative; z-index:1;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:18px;
+  .step-card:hover{transform:translateY(-4px); background:rgba(255,255,255,.13);}
+  .step-num{
+    width:44px; height:44px; border-radius:50%;
+    background:var(--yellow); color:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins'; font-weight:800; font-size:16px;
+    margin:0 auto 16px;
   }
-  .cta-panel p{
-    font-size:0.95rem;
-    opacity:0.85;
-    max-width:30ch;
-  }
-  .btn-light{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:16px 28px;
-    border-radius:100px;
-    background:#fff;
-    color:var(--teal-deep);
-    font-weight:700;
-    font-size:0.95rem;
-    transition:transform .3s ease, background .3s ease;
-  }
-  .btn-light:hover{ transform:translateY(-2px); background:var(--sun); color:var(--ink); }
- 
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:60px 0 40px;
-  }
-  .footer-grid{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
-    padding-bottom:30px;
-    border-bottom:1px solid var(--line);
-  }
-  .footer-links{
-    display:flex;
-    gap:28px;
-    font-size:0.88rem;
-    color:var(--ink-soft);
-  }
-  .dot{
-    width: 10px;
-    height: 10px;
-    background:var(--sun);
-    box-shadow:0 0 0 4px rgba(253,205,13,0.18);
-  }
-  .footer-bottom{
-    display:flex;
-    justify-content:space-between;
-    padding-top:24px;
-    font-size:0.8rem;
-    color:var(--ink-faint);
-    flex-wrap:wrap;
-    gap:10px;
-  }
+  .step-card h4{color:var(--white); font-size:16px; font-weight:600; font-family:'Inter';}
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 860px){
-    .nav{padding:16px 22px;}
-    .nav-links{display:none;}
-    .hero-grid{ grid-template-columns: 1fr; }
-    .hero-side{ margin-top:1rem; }
-
-    .service-row{
-      grid-template-columns: 32px 1fr;
-    }
-    .service-tag{
-      grid-column: 2 / 3;
-      margin-top:.6rem;
-    }
+  @media (max-width:980px){
+    .hero h1{font-size:38px;}
+    .featured{grid-template-columns:1fr; padding:40px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .steps-grid{grid-template-columns:1fr 1fr;}
   }
-
-  @media (prefers-reduced-motion: reduce){
-    .blob{ animation:none !important; }
-    .services-list{ transition:none !important; opacity:1 !important; transform:none !important; }
-    .service-row{ transition:none !important; }
-    .service-row::before{ transition:none !important; }
-    html{ scroll-behavior:auto; }
+  @media (max-width:760px){
+    .wrap{padding:0 22px;}
+    .service{grid-template-columns:1fr; gap:28px;}
+    .service.reverse .service-media{order:1;}
+    .service.reverse .service-content{order:2;}
+    .personal-grid{grid-template-columns:1fr;}
+    .section-head h2{font-size:28px;}
+    .hero{padding:64px 0 44px;}
+    .hero-blob{display:none;}
+    section.block{padding:56px 0;}
   }
 </style>
 </head>
 <body>
 
-  <!-- ============ Header ============ -->
-  <header class="nav siteNav" id="header"></header>
-  <!-- ============ HERO ============ -->
+<div id="site-header"></div>
 
-  <main class="hero wrap">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+<header class="hero">
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <span class="eyebrow">Programas · Cursos · Mentorías</span>
+      <h1>El camino para que tu familia se reconecte <span class="accent">empieza aquí.</span></h1>
+      <p class="lead">En Pienso Grande acompañamos a padres y adolescentes a reconectar, comunicarse mejor y construir relaciones sanas. Descubre nuestros programas y elige el camino que mejor se adapte a tu familia.</p>
+      <div class="hero-ctas">
+        <a href="#padres" class="btn btn-yellow">Ver programas para padres</a>
+        <a href="#adolescentes" class="btn btn-outline-light">Ver programas para adolescentes</a>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <div class="hero-grid">
+<div class="quicknav">
+  <div class="wrap">
+    <a href="#padres">Para padres</a>
+    <a href="#adolescentes">Para adolescentes</a>
+    <a href="#personalizado">Acompañamiento personalizado</a>
+  </div>
+</div>
+
+<!-- ================= PARA PADRES ================= -->
+<section class="block bg-cream" id="padres">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Para padres</span>
+      <h2>Programas para fortalecer tu liderazgo emocional</h2>
+      <p>Herramientas reales para comunicarte mejor, poner límites desde el amor y recuperar la confianza con tu hijo adolescente.</p>
+    </div>
+
+    <div class="service">
+      <div class="service-media media-1"><img src="./images/home/person-study.jpg" alt="studt"></div>
+      <div class="service-content">
+        <span class="tag-badge tag-padres">Curso online · 6 semanas</span>
+        <h3>Más Unión. Menos Conflictos.</h3>
+        <p class="desc">Aprende a comunicarte con claridad, poner límites desde el amor, gestionar los conflictos sin gritos ni castigos, y recuperar la confianza mutua. Conecta emocionalmente con tu hijo y fortalece tu liderazgo parental con herramientas prácticas y efectivas.</p>
+        <div class="feature-list-label">Incluye:</div>
+        <ul class="feature-list">
+          <li><span class="dot">✓</span> Módulos semanales en video</li>
+          <li><span class="dot">✓</span> Guía de trabajo descargable</li>
+          <li><span class="dot">✓</span> Comunidad privada de WhatsApp</li>
+          <li><span class="dot">✓</span> Ejercicios basados en Psicología, Coaching y PNL</li>
+        </ul>
+        <a href="#" class="btn btn-terracotta">Inscribirme ahora</a>
+      </div>
+    </div>
+
+    <div class="service reverse">
+      <div class="service-media media-2"><img src="./images/home/psychologist-talking.jpg" alt="phychologist"></div>
+      <div class="service-content">
+        <span class="tag-badge tag-padres">Mentoría 1:1</span>
+        <h3>Método Vínculo Seguro</h3>
+        <p class="desc">Sesiones privadas para padres que desean un cambio profundo en la relación con sus hijos. Trabajamos tu historia, tus creencias, tu estilo de crianza y tus emociones para que te conviertas en el líder emocional que tu hijo necesita.</p>
+        <div class="feature-list-label">Incluye:</div>
+        <ul class="feature-list">
+          <li><span class="dot">✓</span> Evaluación inicial + hoja de ruta personalizada</li>
+          <li><span class="dot">✓</span> Sesiones privadas, presenciales o por Zoom</li>
+          <li><span class="dot">✓</span> Acceso a recursos y ejercicios exclusivos</li>
+          <li><span class="dot">✓</span> Enfoque integral: cuerpo, mente y espíritu</li>
+        </ul>
+        <a href="#" class="btn btn-navy">Solicitar mentoría</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-media media-3"><img src="./images/home/family-happy.jpg" alt="reconectar"></div>
+      <div class="service-content">
+        <span class="tag-badge tag-padres">Reto exprés</span>
+        <h3>6 Semanas para Reconectar con tu Hijo</h3>
+        <p class="desc">Pequeños cambios diarios que generan grandes resultados. Un reto práctico y transformador para reconectar emocionalmente con tu hijo en medio de la rutina y el caos del día a día.</p>
+        <div class="feature-list-label">Ideal para ti si:</div>
+        <ul class="feature-list ideal">
+          <li><span class="dot">✓</span> Sientes distancia emocional con tu hijo</li>
+          <li><span class="dot">✓</span> Quieres evitar gritos y discusiones</li>
+          <li><span class="dot">✓</span> Deseas fortalecer el vínculo sin sentirte culpable o perdido/a</li>
+        </ul>
+        <a href="#" class="btn btn-terracotta">Quiero unirme al reto</a>
+      </div>
+    </div>
+
+    <div class="service reverse">
+      <div class="service-media media-4"><img src="./images/home/family-talking.jpg" alt="no-gritar"></div>
+      <div class="service-content">
+        <span class="tag-badge tag-padres">Taller exprés · 90 min</span>
+        <h3>Habla sin Gritar, Conecta sin Chocar</h3>
+        <p class="desc">90 minutos para aprender a hablar sin gritar y conectar sin chocar. Un taller práctico y directo para padres que buscan mejorar la forma en la que se comunican con sus hijos adolescentes. Aprenderás a expresar tus mensajes con claridad, escuchar sin reaccionar, y guiar con firmeza sin romper la conexión.</p>
+        <div class="feature-list-label">Incluye:</div>
+        <ul class="feature-list">
+          <li><span class="dot">✓</span> Guía rápida descargable</li>
+          <li><span class="dot">✓</span> Técnicas de comunicación emocional</li>
+          <li><span class="dot">✓</span> Acceso a la grabación por 7 días</li>
+        </ul>
+        <a href="#" class="btn btn-navy">Ver próximas fechas</a>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-media media-5"><img src="./images/home/parent-conforting.jpg" alt="conforting"></div>
+      <div class="service-content">
+        <span class="tag-badge tag-padres">Acompañamiento</span>
+        <h3>Ayuda a tu Hijo a Verse con Amor</h3>
+        <p class="desc">Diseñado para padres que desean apoyar la autoestima de sus hijos desde casa, con estrategias emocionales claras, validadas y adaptadas a la adolescencia.</p>
+        <div class="feature-list-label">Ideal para ti si tu hijo/a:</div>
+        <ul class="feature-list ideal">
+          <li><span class="dot">✓</span> Se compara con otros</li>
+          <li><span class="dot">✓</span> Tiene baja confianza o inseguridad</li>
+          <li><span class="dot">✓</span> Ha vivido bullying o rupturas afectivas</li>
+          <li><span class="dot">✓</span> Muestra señales de dependencia emocional</li>
+        </ul>
+        <a href="#" class="btn btn-terracotta">Solicitar información</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARA ADOLESCENTES ================= -->
+<section class="block bg-peach" id="adolescentes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Para adolescentes</span>
+      <h2>Un espacio para valorarse y construir su propio camino</h2>
+      <p>Diseñado para que los adolescentes aprendan a quererse, planificar su vida y construir relaciones sanas sin perder su identidad.</p>
+    </div>
+
+    <div class="featured">
       <div>
-        <p class="eyebrow"><span></span>Servicios</p>
-        <h1 class="hero-title">Un espacio para <em>ti</em>, sea cual sea tu momento</h1>
+        <span class="tag-badge tag-adol" style="background:rgba(255,255,255,.18); color:var(--white);">Curso en vivo · 12 a 19 años</span>
+        <h3>Amar sin Perderme</h3>
+        <p class="desc">Autoestima, propósito y noviazgos conscientes. Un curso dinámico y emocionalmente transformador basado en el libro de Rosina, que enseña a valorarse, reconocer lo que merecen y construir relaciones sanas sin perder su identidad.</p>
+        <div class="chips">
+          <span class="chip">Autoestima e identidad</span>
+          <span class="chip">Propósito y metas</span>
+          <span class="chip">Comunicación y familia</span>
+          <span class="chip">Noviazgo positivo</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="dot">✓</span> Sesiones en vivo con Rosina</li>
+          <li><span class="dot">✓</span> Cuaderno de ejercicios interactivos</li>
+          <li><span class="dot">✓</span> Comunidad protegida</li>
+          <li><span class="dot">✓</span> Acceso a ejercicios complementarios online</li>
+        </ul>
+        <a href="#" class="btn btn-yellow">Quiero inscribirme</a>
       </div>
-      <div class="hero-side">
-        <p class="hero-tagline">Desde terapia individual hasta acompañamiento para toda la familia. Cada proceso se adapta a lo que necesitas.</p>
+      <div class="featured-media"><img src="./images/home/confident-guy.jpg" alt="confident-guy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PERSONALIZADO ================= -->
+<section class="block bg-cream" id="personalizado">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Acompañamiento personalizado</span>
+      <h2>Sesiones individuales para cada momento de tu familia</h2>
+      <p>Cuando lo que necesitas es un espacio uno a uno, presencial o por Zoom, adaptado a tu situación.</p>
+    </div>
+    <div class="personal-grid">
+      <div class="personal-card">
+        <h3>Sesiones individuales para padres</h3>
+        <p>Asesoría en casos específicos —divorcio, rebeldía, baja autoestima, desconexión emocional— y orientación puntual sobre normas, límites, disciplina, uso de redes o sexualidad.</p>
+        <a href="#" class="btn btn-terracotta">Agendar una sesión para mí</a>
+      </div>
+      <div class="personal-card">
+        <h3>Sesiones individuales para adolescentes</h3>
+        <p>Un espacio seguro para orientar, motivar y acompañar a tu hijo/a frente a la inseguridad, ansiedad, presión social, orientación vocacional, noviazgo o conflictos familiares.</p>
+        <a href="#" class="btn btn-navy">Agendar una sesión para mi hijo/a</a>
       </div>
     </div>
-</main>
+  </div>
+</section>
 
-  <!-- ============ SERVICES ============ -->
-  <section id="servicios" class="story-section wrap">
-    <p class="eyebrow"><span></span>Lo que ofrezco</p>
-    <h2 class="section-heading">Areas de apoyo</h2>
-    <p class="section-sub">Seis maneras de empezar, según lo que estés viviendo.</p>
+<!-- ================= SIGUIENTE PASO ================= -->
 
-    <div class="services-list">
+<footer class="footer" id="footer"></footer>
 
-      <div class="service-row" style="--row-accent:var(--olive);">
-        <span class="service-num">01</span>
-        <div>
-          <span class="service-category">Terapia individual</span>
-          <h3 class="service-title">Para adolescentes</h3>
-          <p class="service-desc">Sesiones de psicología clínica para trabajar autoestima, ansiedad, identidad y relaciones, en un espacio seguro y sin juicios.</p>
-        </div>
-        <span class="service-tag">13–19 años</span>
-      </div>
-
-      <div class="service-row" style="--row-accent:var(--coral);">
-        <span class="service-num">02</span>
-        <div>
-          <span class="service-category">Acompañamiento</span>
-          <h3 class="service-title">Orientación para padres</h3>
-          <p class="service-desc">Espacios para entender lo que vive tu hijo o hija adolescente, y aprender a guiar desde la información, no desde el miedo.</p>
-        </div>
-        <span class="service-tag">Madres y padres</span>
-      </div>
-
-      <div class="service-row" style="--row-accent:var(--terracotta);">
-        <span class="service-num">03</span>
-        <div>
-          <span class="service-category">Sexología</span>
-          <h3 class="service-title">Educación sexual</h3>
-          <p class="service-desc">Información clara y responsable sobre sexualidad, dirigida a adolescentes y a sus familias.</p>
-        </div>
-        <span class="service-tag">Adolescentes y padres</span>
-      </div>
-
-      <div class="service-row" style="--row-accent:var(--salmon);">
-        <span class="service-num">04</span>
-        <div>
-          <span class="service-category">Grupal</span>
-          <h3 class="service-title">Talleres y charlas</h3>
-          <p class="service-desc">Espacios grupales para colegios, fundaciones o grupos de padres, sobre adolescencia, sueños y crianza consciente.</p>
-        </div>
-        <span class="service-tag">Instituciones y grupos</span>
-      </div>
-
-      <div class="service-row" style="--row-accent:var(--teal);">
-        <span class="service-num">05</span>
-        <div>
-          <span class="service-category">Life coaching</span>
-          <h3 class="service-title">Para jóvenes</h3>
-          <p class="service-desc">Sesiones certificadas internacionalmente (ILC Academy) enfocadas en potenciar metas, autoconfianza y dirección de vida.</p>
-        </div>
-        <span class="service-tag">Adolescentes y jóvenes</span>
-      </div>
-
-      <div class="service-row" style="--row-accent:var(--blue-deep);">
-        <span class="service-num">06</span>
-        <div>
-          <span class="service-category">Acompañamiento integral</span>
-          <h3 class="service-title">Terapia + coaching</h3>
-          <p class="service-desc">Un proceso combinado que une psicología clínica y coaching, para quienes buscan sanar y crecer al mismo tiempo.</p>
-        </div>
-        <span class="service-tag">Procesos a la medida</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ PROCESS ============ -->
-  <section class="process wrap">
-    <div class="process-row">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h4>Escríbeme</h4>
-        <p>Me cuentas brevemente qué está pasando, para ti o para tu hijo o hija.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h4>Conversamos</h4>
-        <p>Una primera sesión para conocernos y ver qué servicio se ajusta mejor.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h4>Diseñamos tu proceso</h4>
-        <p>Definimos juntos la frecuencia, modalidad y objetivos a seguir.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="final-cta" id="book">
-    <div class="cta-panel reveal">
-      <h2>Ready when you are.</h2>
-      <div class="cta-right">
-        <p>In-person and virtual sessions available. Most people hear back within one business day.</p>
-        <a class="btn-light" href="#">Book your first session →</a>
-      </div>
-    </div>
-  </section>
-
-    <!-- Footer -->
-    <footer>
-    <div class="wrap">
-        <div class="footer-grid">
-        <a class="logo" href="#top"><span class="dot"></span>Rosina Peñaranda, MD</a>
-        <div class="footer-links">
-            <a href="#services">Focus areas</a>
-            <a href="#about">About</a>
-            <a href="#process">Process</a>
-            <a href="#book">Book a session</a>
-        </div>
-        </div>
-        <div class="footer-bottom">
-        <span>hello@rosinapenaranda.com — placeholder</span>
-        <span>© 2026 Rosina Peñaranda, MD. All rights reserved.</span>
-        </div>
-    </div>
-    </footer>
-
-<script>
-  // Scroll-reveal for the services list
-  const list = document.querySelector('.services-list');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('is-visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  if (list) io.observe(list);
-</script>
-
-<script src="./functions/header.js"></script>
 </body>
+<script src="./functions/header.js"></script>
+<script src="./functions/footer.js"></script>
 </html>

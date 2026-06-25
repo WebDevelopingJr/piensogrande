@@ -3,212 +3,709 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nosotros — Pienso Grande</title>
-<link rel="stylesheet" href="./styles/about.css">
+<title>Pienso Grande® — Rosina Peñaranda | Creando un futuro brillante</title>
 <link rel="stylesheet" href="./styles/header.css">
 <link rel="stylesheet" href="./styles/footer.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF5EA;
+    --cream-deep:#EFE1C8;
+    --paper:#FFFDF8;
+    --ink:#2B2420;
+    --ink-soft:#5A4F44;
+    --navy:#1A587F;
+    --navy-deep:#11293A;
+    --terracotta:#D4684B;
+    --gold:#E39B48;
+    --olive:#8B6F12;
+    --white:#FFFFFF;
+    --line:rgba(43,36,32,0.14);
+    --shadow: 0 18px 40px rgba(20,30,40,0.12);
+    --radius: 6px;
+    --maxw: 1180px;
+  }
 
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Work Sans", sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;line-height:1.7;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:"Work Sans",sans-serif;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow .vinculo-mini{flex:none;}
+  section{position:relative;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Work Sans",sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:15px 30px;
+    border-radius:999px;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--terracotta);color:var(--white);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(212,104,75,0.35);}
+  .btn-dark{background:var(--navy-deep);color:var(--white);}
+  .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(17,41,58,0.35);}
+  .btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--white);}
+  .btn-light{background:var(--white);color:var(--navy-deep);}
+  .btn-light:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.18);}
+  .link-arrow{
+    font-weight:600;
+    font-size:14.5px;
+    border-bottom:1.5px solid currentColor;
+    padding-bottom:3px;
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+  }
+  .link-arrow svg{width:14px;height:14px;transition:transform .2s ease;}
+  .link-arrow:hover svg{transform:translateX(4px);}
+
+  /* ---------- vínculo mark (signature) ---------- */
+  .vinculo{display:inline-flex;align-items:center;justify-content:center;}
+  .vinculo svg circle{fill:none;stroke-width:2.4;}
+
+  /* ---------- photo placeholders ---------- */
+  .ph{
+    position:relative;
+    width:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    border-radius:var(--radius);
+    color:var(--navy);
+    text-align:center;
+    overflow:hidden;
+  }
+  .ph svg{width:30px;height:30px;opacity:.55;}
+  .ph-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;opacity:.7;padding:0 18px;}
+  .ph-label small{display:block;font-weight:500;text-transform:none;letter-spacing:0;font-size:11.5px;margin-top:3px;opacity:.85;}
+  .ph--landscape{aspect-ratio:4/3;}
+  .ph--wide{aspect-ratio:16/9;}
+  .ph--square{aspect-ratio:1/1;}
+  .ph--book{aspect-ratio:2/3;max-width:280px;margin:0 auto;box-shadow:var(--shadow);}
+  .ph--phone{aspect-ratio:9/18.5;max-width:230px;border-radius:26px;border-width:2px;}
+  .ph--hero-tile{aspect-ratio:1/1;border-color:rgba(255,255,255,0.25);background:repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 10px, rgba(255,255,255,0.02) 10px 20px), rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;min-height:100vh;display:flex;flex-direction:column;
+    justify-content:center;align-items:center;text-align:center;
+    overflow:hidden;background:var(--navy-deep);
+    padding:120px 24px 90px;
+  }
+  .hero-grid{
+    position:absolute;inset:0;display:grid;
+    grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);
+    gap:3px;z-index:0;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(17,41,58,0.55) 0%, rgba(17,41,58,0.82) 60%, rgba(17,41,58,0.95) 100%);
+    z-index:1;
+  }
+  .hero-content{position:relative;z-index:2;max-width:780px;}
+  .hero-vinculo{margin-bottom:22px;opacity:.8;}
+  .hero h1{
+    color:var(--white);font-size:clamp(40px,6.6vw,74px);
+    font-weight:500;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500;}
+  .hero p{
+    margin-top:22px;color:rgba(255,255,255,0.82);font-size:18px;max-width:520px;margin-left:auto;margin-right:auto;
+  }
+  .hero-scroll{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;
+    color:rgba(255,255,255,0.7);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    animation:bob 2.4s ease-in-out infinite;
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+  /* ============ RETO EXPRES ============ */
+  .reto{background:var(--cream);padding:90px 0;}
+  .reto-inner{display:grid;grid-template-columns:340px 1fr;gap:70px;align-items:center;}
+  .reto-mock{
+    background:var(--paper);border-radius:14px;box-shadow:var(--shadow);padding:26px;
+    display:flex;flex-direction:column;align-items:center;gap:18px;
+  }
+  .reto-badge{
+    width:100%;aspect-ratio:1/1;border-radius:10px;
+    background:repeating-linear-gradient(-45deg, var(--terracotta) 0 18px, var(--gold) 18px 36px);
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+  }
+  .reto-badge::before{
+    content:"";position:absolute;inset:10px;background:var(--navy-deep);border-radius:6px;
+  }
+  .reto-badge-text{position:relative;z-index:1;color:var(--white);text-align:center;font-family:"Fraunces",serif;}
+  .reto-badge-text .top{display:block;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;opacity:.85;}
+  .reto-badge-text .mid{display:block;font-size:30px;font-weight:600;margin:2px 0;}
+  .reto-badge-text .bot{display:block;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+  .reto-screen-label{font-size:12px;color:var(--ink-soft);text-align:center;}
+
+  .reto-copy .eyebrow{margin-bottom:14px;}
+  .reto h2{font-size:clamp(30px,4vw,42px);margin-bottom:18px;max-width:560px;}
+  .reto-sub{font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--navy);margin-bottom:10px;}
+  .reto-italic{font-style:italic;color:var(--ink-soft);font-size:15px;margin-bottom:18px;display:block;}
+  .reto-copy p.body{max-width:520px;margin-bottom:28px;color:var(--ink-soft);}
+  .form-row{display:flex;gap:12px;flex-wrap:wrap;max-width:520px;}
+  .form-row input{
+    flex:1 1 180px;padding:15px 18px;border-radius:999px;border:1.5px solid var(--line);
+    background:var(--white);font-family:"Work Sans",sans-serif;font-size:14.5px;color:var(--ink);
+  }
+  .form-row input:focus{outline:2px solid var(--navy);outline-offset:1px;}
+  .form-fine{font-size:12px;color:var(--ink-soft);opacity:.75;margin-top:14px;max-width:480px;}
+
+  /* ============ SOY ROSINA ============ */
+  .soy{background:var(--cream-deep);padding:100px 0px 0;}
+  .soy-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .soy-text .eyebrow{margin-bottom:16px;}
+  .soy h2{font-size:clamp(34px,5vw,52px);margin-bottom:22px;}
+  .soy p.body{color:var(--ink-soft);margin-bottom:16px;max-width:520px; text-align: justify;}
+  .soy-extra{max-height:0;overflow:hidden;transition:max-height .5s ease; text-align: justify;}
+  .soy-extra.open{max-height:900px;}
+  .soy-extra p{color:var(--ink-soft);margin-bottom:14px;max-width:520px;}
+  .soy-toggle{margin-top:8px;background:none;border:0;cursor:pointer;padding:0;color:var(--navy);font-family:"Work Sans",sans-serif;}
+
+  /* ============ STATS ============ */
+  .stats{background:var(--navy-deep);padding:70px 0;}
+  .stats .eyebrow{color:var(--gold);justify-content:center;margin-bottom:38px;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px;text-align:center;}
+  .stat-num{font-family:"Fraunces",serif;font-size:clamp(32px,4.2vw,46px);color:var(--white);font-weight:600;}
+  .stat-label{margin-top:8px;font-size:13px;letter-spacing:0.04em;color:rgba(255,255,255,0.72);}
+
+  /* ============ OPTIN ============ */
+  .optin{background:var(--cream);padding:100px 0;}
+  .optin-inner{display:grid;grid-template-columns:1fr 320px;gap:70px;align-items:center;}
+  .optin h2{font-size:clamp(28px,4vw,40px);margin:16px 0 18px;max-width:560px;}
+  .optin p.body{color:var(--ink-soft);max-width:520px;margin-bottom:28px;}
+
+  /* ============ FEATURE BLOCKS ============ */
+  .feature{padding:96px 0;}
+  .feature:nth-of-type(odd){background:var(--paper);}
+  .feature-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .feature-inner.reverse .feature-text{order:2;}
+  .feature-inner.reverse .feature-media{order:1;}
+  .feature-text .eyebrow{margin-bottom:16px;}
+  .feature-text h3{font-size:clamp(30px,4vw,44px);margin-bottom:20px;}
+  .feature-text p.body{color:var(--ink-soft);margin-bottom:28px;max-width:480px;}
+  .feature-media{position:relative;}
+  .play-overlay{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,0.92);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  }
+  .play-overlay svg{width:20px;height:20px;margin-left:2px;}
+
+  /* ============ MORE PROGRAMS ============ */
+  .more{background:var(--cream-deep);padding:96px 0;}
+  .more-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+  .more-head .eyebrow{justify-content:center;margin-bottom:16px;}
+  .more-head h2{font-size:clamp(30px,4vw,40px);}
+  .more-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;}
+  .more-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px 22px;
+    display:flex;flex-direction:column;gap:14px;transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .more-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .more-icon{width:38px;height:38px;color:var(--terracotta);}
+  .more-card h4{font-size:17px;font-weight:600;}
+  .more-card p{font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .more-card .link-arrow{font-size:12.5px;color:var(--navy);}
+
+  /* ============ BLOG ============ */
+  .blog{background:var(--navy-deep);padding:100px 0;color:var(--white);}
+  .blog-inner{display:grid;grid-template-columns:300px 1fr;gap:70px;}
+  .blog-side .eyebrow{color:var(--gold);margin-bottom:18px;}
+  .blog-side h2{color:var(--white);font-size:clamp(28px,3.6vw,38px);margin-bottom:16px;}
+  .blog-side p{color:rgba(255,255,255,0.78);margin-bottom:26px;}
+  .social-row{display:flex;gap:14px;}
+  .social-row a{
+    width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.3);
+    display:flex;align-items:center;justify-content:center;color:var(--white);transition:background .2s ease, border-color .2s ease;
+  }
+  .social-row a:hover{background:var(--terracotta);border-color:var(--terracotta);}
+  .social-row svg{width:16px;height:16px;}
+  .post-list{display:flex;flex-direction:column;}
+  .post{
+    display:grid;grid-template-columns:110px 1fr;gap:22px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.14);
+  }
+  .post:first-child{padding-top:0;}
+  .post-thumb{aspect-ratio:1/1;}
+  .post-date{font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px;}
+  .post-title{font-family:"Fraunces",serif;font-size:19px;font-weight:600;color:var(--white);margin-bottom:8px;line-height:1.3;}
+  .post-excerpt{font-size:14px;color:rgba(255,255,255,0.72);margin-bottom:10px;}
+  .tag-row{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:10.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:4px 10px;border-radius:999px;color:#fff;}
+  .blog-foot{text-align:center;margin-top:44px;}
+
+  /* ============ TESTIMONIAL ============ */
+  .testi{background:var(--cream);padding:100px 0;}
+  .testi-head{text-align:center;max-width:600px;margin:0 auto 50px;}
+  .testi-head .eyebrow{justify-content:center;margin-bottom:16px;}
+  .testi-head h2{font-size:clamp(30px,4.2vw,42px);}
+  .testi-wrap{display:grid;grid-template-columns:260px 1fr;gap:60px;align-items:center;max-width:920px;margin:0 auto;}
+  .testi-quote{position:relative;}
+  .testi-slide{display:none;}
+  .testi-slide.active{display:block;}
+  .testi-text{font-family:"Fraunces",serif;font-style:italic;font-size:clamp(20px,2.6vw,27px);line-height:1.5;color:var(--ink);margin-bottom:18px;}
+  .testi-name{font-weight:700;font-size:14px;}
+  .testi-role{font-size:13px;color:var(--ink-soft);}
+  .testi-nav{display:flex;gap:14px;margin-top:30px;}
+  .testi-arrow{
+    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);background:none;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s ease,color .2s ease;
+  }
+  .testi-arrow:hover{background:var(--ink);color:var(--white);}
+  .testi-arrow svg{width:16px;height:16px;}
+
+
+
+  /* ============ responsive ============ */
+  @media (max-width: 980px){
+    .reto-inner,.soy-inner,.optin-inner,.feature-inner,.blog-inner{grid-template-columns:1fr;gap:44px;}
+    .feature-inner.reverse .feature-text,.feature-inner.reverse .feature-media{order:initial;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:36px;}
+    .more-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-row{grid-template-columns:repeat(2,1fr);}
+    .gallery-row.two{grid-template-columns:1fr 1fr;}
+    .testi-wrap{grid-template-columns:1fr;text-align:center;}
+    .testi-nav{justify-content:center;}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:36px;}
+    .nav-links{display:none;}
+    .burger{display:block;}
+  }
+  @media (max-width: 620px){
+    .wrap{padding:0 20px;}
+    .more-grid{grid-template-columns:1fr;}
+    .gallery-row,.gallery-row.two{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:1fr 1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+    .hero-grid{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);}
+    .post{grid-template-columns:1fr;}
+    .post-thumb{display:none;}
+    .form-row{flex-direction:column;}
+    .form-row input{flex:1 1 auto;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .hero-scroll{animation:none;}
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-  <header class="nav siteNav" id="header"></header>
+<!-- ============ NAV ============ -->
 
-<!-- HERO -->
-<div style="max-width:1200px; margin:0 auto;">
-  <div class="hero">
-    <div class="hero-text">
-      <div class="hero-eyebrow">Nuestra historia</div>
-      <h1>Nacimos para<br>soñar en <em>grande.</em></h1>
-      <p>Acompañamos a adolescentes a confiar en sus capacidades — y a sus padres a guiarlos sin perder el rumbo. Sin juicios. Con herramientas reales.</p>
-      <div class="hero-buttons">
-        <a href="#" class="btn-primary">Conoce nuestra misión</a>
-        <a href="#" class="btn-outline">Ver servicios</a>
-      </div>
-    </div>
-    <div class="hero-visual">
-      <div class="blob-accent-1"></div>
-      <div class="blob-frame">
-        <div class="blob-number" style="font-size:40px;color:rgba(255,255,255,0.6);text-align:center;padding:20px;line-height:1.4">
-          Foto<br>vertical
+  <div id="site-header"></div>
+
+
+<!-- ============ HERO ============ -->
+<div class="hero" id="inicio">
+  <div class="hero-grid">
+    <!-- 12 espacios para fotos del collage del héroe (familias, talleres, charlas) -->
+    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
+    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
+    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
+    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
+  </div>
+  <div class="hero-content">
+    <span class="hero-vinculo vinculo">
+      <svg width="40" height="30" viewBox="0 0 26 20"><circle cx="10" cy="10" r="8.6" stroke="#E39B48"/><circle cx="16" cy="10" r="8.6" stroke="#E39B48"/></svg>
+    </span>
+    <h1>Construye una Relación<br>y un Futuro <em>Brillante</em></h1>
+    <p>Pienso Grande® · Psicología, coaching y propósito para acompañar a padres e hijos adolescentes a reconectar.</p>
+  </div>
+  <div class="hero-scroll">Descubre más<br>↓</div>
+</div>
+
+<!-- ============ RETO EXPRÉS (lead magnet) ============ -->
+<section class="reto" id="reto">
+  <div class="wrap reto-inner">
+    <div class="reto-mock">
+      <div class="reto-badge">
+        <div class="reto-badge-text">
+          <span class="top">Únete al</span>
+          <span class="mid">RETO<br>EXPRÉS</span>
+          <span class="bot">6 Semanas</span>
         </div>
       </div>
-      <div class="blob-accent-2"></div>
+      <p class="reto-screen-label">Vista del reto dentro del portal de Pienso Grande</p>
+    </div>
+    <div class="reto-copy">
+      <span class="eyebrow"><span class="vinculo vinculo-mini"><svg width="16" height="12" viewBox="0 0 26 20"><circle cx="10" cy="10" r="8.6"/><circle cx="16" cy="10" r="8.6"/></svg></span>Gratis</span>
+      <h2>Recupera la Conexión con tu Hijo, Esta Semana</h2>
+      <span class="reto-sub">El reto gratuito de Pienso Grande · Creado por Rosina Peñaranda</span>
+      <span class="reto-italic">Psicóloga y Life Coach de padres y adolescentes · Más de 22 años de experiencia · La confianza de miles de familias en Latinoamérica y EE.UU.</span>
+      <p class="body">Pequeños cambios diarios, durante seis semanas, para salir del ciclo de gritos y distancia y empezar a construir un vínculo seguro con tu hijo o hija adolescente.</p>
+      <form class="form-row" onsubmit="return false;">
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <button type="submit" class="btn btn-primary">Empezar Ahora</button>
+      </form>
+      <p class="form-fine">Al unirte aceptas recibir correos de Pienso Grande. Puedes cancelar tu suscripción cuando quieras.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- NUMBERS -->
-<div class="numbers-band">
-  <div class="numbers-inner">
-    <div class="stat-item">
-      <div class="stat-num">15<span>+</span></div>
-      <div class="stat-label">años de experiencia<br>en psicología clínica</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">7<span>+</span></div>
-      <div class="stat-label">años trabajando<br>con adolescentes</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">2<span>x</span></div>
-      <div class="stat-label">comunidades: privilegiadas<br>y de bajos recursos</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100<span>%</span></div>
-      <div class="stat-label">enfoque en bienestar<br>familiar integral</div>
-    </div>
-  </div>
-</div>
-
-<!-- INTRO BAND -->
-<div class="intro-band">
-  <div class="intro-band-inner">
-    <div>
-      <div class="intro-label">● Quiénes somos</div>
-    </div>
-    <div>
-      <h2>Una empresa construida desde la experiencia, no desde un escritorio.</h2>
-      <p>Con 15 años de trayectoria en psicología clínica y 7 años dedicados exclusivamente al trabajo con adolescentes de comunidades privilegiadas y de bajos recursos, Pienso Grande nació del deseo de participar de una forma más amplia en la transformación positiva de la vida de los jóvenes y su entorno familiar.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ALTERNATING STORY SECTIONS -->
-<div class="alt-sections">
-
-  <div class="alt-row">
-    <div class="alt-visual">
-      <div class="alt-blob">
-        <span class="blob-number">01</span>
+<!-- ============ SOY ROSINA ============ -->
+<section class="soy" id="sobre-mi">
+  <div class="wrap soy-inner">
+    <div class="soy-text">
+      <span class="eyebrow">Desde 2018</span>
+      <h2>SOY ROSINA</h2>
+      <p class="body">Soy psicóloga con más de 22 años de experiencia, especializada en acompañar a padres y adolescentes a construir relaciones sanas, fortalecer la autoestima y educar desde la conexión emocional. Hace 15 años comencé a trabajar de forma exclusiva con adolescentes, y desde entonces he guiado a más de 5.000 familias en Venezuela, Estados Unidos y otros países de Latinoamérica.</p>
+      <p class="body">Como madre soltera e inmigrante, creo que no hay que empezar de cero — hay que empezar de nuevo, con toda la historia, la experiencia y la vocación que nadie puede quitarte.</p>
+      <div class="soy-extra" id="soyExtra">
+        <p>Pienso Grande nació de una convicción: el verdadero cambio en los adolescentes solo es posible cuando sus padres también se transforman. Comencé en consulta, diseñando un programa para una fundación centrado en autoestima, proyecto de vida y liderazgo. Con el tiempo entendí que necesitábamos un modelo integral donde padres e hijos crecieran juntos — así nació nuestra metodología Vínculo Seguro, que integra el desarrollo emocional, el propósito de vida, el liderazgo interior y la espiritualidad.</p>
+        <p>Hoy, mi sueño es llevar este mensaje al mundo: proyectar nuestra metodología al idioma inglés y llegar a cada familia que necesite esperanza, herramientas y guía. Pienso Grande no es solo una marca — es una invitación a construir juntos un futuro brillante.</p>
       </div>
-      <div class="alt-dot"></div>
+      <button class="soy-toggle link-arrow" id="soyToggle">Conoce mi historia completa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
     </div>
-    <div class="alt-content">
-      <div class="alt-eyebrow">El problema</div>
-      <h3>Los vacíos que nadie<br>estaba llenando.</h3>
-      <p>A pesar del nivel educativo y de la abundante información disponible en internet, tanto padres como hijos presentaban grandes vacíos sobre los cambios que ocurren durante la adolescencia. Además, buscar ayuda psicológica seguía siendo un tema manejado con discreción y vergüenza, producto de los prejuicios sociales.</p>
-      <span class="alt-tag">Por qué existimos</span>
-    </div>
-  </div>
-
-  <div class="alt-row reverse">
-    <div class="alt-visual">
-      <div class="alt-blob teal-blob">
-        <span class="blob-number" style="color:rgba(26,88,127,0.3)">02</span>
-      </div>
-      <div class="alt-dot"></div>
-    </div>
-    <div class="alt-content">
-      <div class="alt-eyebrow">La visión</div>
-      <h3>Una mirada renovada<br>sobre la psicología.</h3>
-      <p>Surgió la necesidad de crear una empresa con una visión renovada: servicios novedosos que brinden actividades pertinentes del área de la psicología, atractivos para cuidadores y adolescentes, con el objetivo de lograr espacios para el desarrollo personal de manera efectiva y sin estigmas.</p>
-      <span class="alt-tag">Nuestro enfoque</span>
+    <div class="ph ph--portrait" >
+      <img src="images/home/rosina-web01.png"  alt="fot-rosina" />
     </div>
   </div>
+</section>
 
-  <div class="alt-row">
-    <div class="alt-visual">
-      <div class="alt-blob gold-blob">
-        <span class="blob-number" style="color:rgba(152,122,1,0.3)">03</span>
-      </div>
-      <div class="alt-dot"></div>
-    </div>
-    <div class="alt-content">
-      <div class="alt-eyebrow">El programa</div>
-      <h3>Un plan de vida<br>que empieza hoy.</h3>
-      <p>Pienso Grande cuenta con un programa integral para adolescentes en donde la familia y la sociedad cumplen un rol importante. Énfasis en tres pilares fundamentales para el desarrollo personal: Autoestima, Plan de vida y Liderazgo. Porque la adolescencia está repleta de sueños que merecen cumplirse.</p>
-      <span class="alt-tag">Autoestima · Plan de vida · Liderazgo</span>
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="wrap">
+    <div class="eyebrow"><span class="vinculo vinculo-mini"><svg width="16" height="12" viewBox="0 0 26 20"><circle cx="10" cy="10" r="8.6" stroke="#E39B48"/><circle cx="16" cy="10" r="8.6" stroke="#E39B48"/></svg></span>Resultados que hablan por sí mismos</div>
+    <div class="stats-grid">
+      <div><div class="stat-num">+22</div><div class="stat-label">Años de experiencia clínica</div></div>
+      <div><div class="stat-num">+5.000</div><div class="stat-label">Familias acompañadas</div></div>
+      <div><div class="stat-num">+15</div><div class="stat-label">Años enfocada en adolescentes</div></div>
+      <div><div class="stat-num">2018</div><div class="stat-label">Año en que nace Pienso Grande®</div></div>
     </div>
   </div>
+</section>
 
-  <div class="alt-row reverse">
-    <div class="alt-visual">
-      <div class="alt-blob" style="background: linear-gradient(145deg, #D8E8C5 0%, #B8D4A0 100%);">
-        <span class="blob-number" style="color:rgba(60,100,40,0.25)">04</span>
-      </div>
-      <div class="alt-dot"></div>
-    </div>
-    <div class="alt-content">
-      <div class="alt-eyebrow">La información</div>
-      <h3>Basada en ciencia.<br>Adaptada a tu realidad.</h3>
-      <p>La internet ofrece miles de artículos que no siempre se adaptan a quien los necesita. Aquí encontrarás orientación relevante basada en investigaciones y en más de 15 años de experiencia profesional, diseñada para adaptarse a tu estilo de vida y a tu dinámica familiar específica.</p>
-      <span class="alt-tag">Información confiable</span>
-    </div>
-  </div>
-
-</div>
-
-<!-- MISSION -->
-<div class="mission-section">
-  <div class="mission-inner">
+<!-- ============ OPT-IN RESOURCE ============ -->
+<!-- <section class="optin">
+  <div class="wrap optin-inner">
     <div>
-      <div class="mission-label">● Misión</div>
-      <h2>Crecer juntos,<br>en <em>familia.</em></h2>
+      <span class="eyebrow">Recurso gratuito</span>
+      <h2>Aprende a Conectar con tu Hijo Adolescente, Sin Gritos ni Castigos</h2>
+      <p class="body">Descarga la guía gratuita de Pienso Grande con herramientas de psicología, coaching y PNL para comunicarte con claridad, poner límites desde el amor y recuperar la confianza mutua.</p>
+      <form class="form-row" onsubmit="return false;">
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <button type="submit" class="btn btn-dark">Quiero el Recurso Gratis</button>
+      </form>
+      <p class="form-fine">Sin spam. Solo herramientas reales para tu familia — puedes cancelar cuando quieras.</p>
     </div>
-    <div class="mission-text">
-      <p>Somos una empresa que promueve espacios para el crecimiento personal, brindando herramientas que ayuden a educar y orientar oportunamente a los adolescentes, jóvenes, padres y cuidadores.</p>
-      <p>Mediante programas psicoeducativos, psicoterapia, talleres, charlas, conferencias y artículos educativos, fomentamos la construcción de un proyecto de vida y el fortalecimiento de la dinámica familiar — logrando un entorno saludable para todos.</p>
+    <div class="ph ph--book">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h11v16H6a2 2 0 0 0 0 4h13"/></svg>
+      <span class="ph-label">Guía descargable<br><small>Portada del recurso gratuito</small></span>
+    </div>
+  </div>
+</section> -->
+
+<!-- ============ SERVICIOS — FEATURE BLOCKS ============ -->
+<section id="servicios">
+  <div class="services-head" style="max-width:720px;margin:70px auto 54px;text-align:center;">
+    <span class="eyebrow" style="justify-content:center;color:var(--terracotta);margin-bottom:10px;">Servicios</span>
+    <h2 style="font-size:clamp(30px,4vw,42px);margin:16px 0 12px;">Elige la forma de acompañar a tu familia</h2>
+    <p style="max-width:600px;margin:0 auto;color:var(--ink-soft);font-size:1rem;line-height:1.7;">Programas diseñados para ayudarte a crear relaciones más fuertes, comunicarte con claridad y fortalecer la confianza con tu hijo adolescente.</p>
+  </div>
+<div class="feature">
+  <div class="wrap feature-inner">
+    <div class="feature-text">
+      <span class="eyebrow">Curso online · 6 semanas</span>
+      <h3>Más Unión, Menos Conflictos</h3>
+      <p class="body">Aprende a comunicarte con claridad, poner límites desde el amor, gestionar los conflictos sin gritos ni castigos y recuperar la confianza mutua con tu hijo adolescente — paso a paso, con módulos semanales en video, una guía descargable y una comunidad privada de WhatsApp.</p>
+      <a href="#contacto" class="btn btn-primary">Inscribirme Ahora</a>
+    </div>
+    <div class="feature-media">
+      <div class="ph ph--landscape">
+        <img src="./images/home/person-study.jpg" alt="study">
+      </div>
     </div>
   </div>
 </div>
 
-<!-- PILLARS -->
-<div class="pillars-section">
-  <div class="pillars-header">
+<div class="feature">
+  <div class="wrap feature-inner reverse">
+    <div class="feature-text">
+      <span class="eyebrow">Mentoría 1:1</span>
+      <h3>Método Vínculo Seguro™</h3>
+      <p class="body">Sesiones privadas, presenciales o por Zoom, para padres que desean un cambio profundo en la relación con sus hijos. Trabajamos tu historia, tus creencias y tu estilo de crianza para que te conviertas en un verdadero líder emocional — desde un enfoque integral de cuerpo, mente y espíritu.</p>
+      <a href="#contacto" class="btn btn-primary">Solicitar Mentoría</a>
+    </div>
+    <div class="feature-media">
+      <div class="ph ph--landscape">
+        <img src="./images/home/psychologist-talking.jpg" alt="phychologist">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="feature">
+  <div class="wrap feature-inner">
+    <div class="feature-text">
+      <span class="eyebrow">Para adolescentes (12–19) · Basado en el libro</span>
+      <h3>Amar sin Perderme</h3>
+      <p class="body">Un curso en vivo, dinámico y emocionalmente transformador, basado en mi libro <em style="font-family:'Fraunces',serif;">Amar sin Perderme</em>. Enseña a los adolescentes a valorarse, reconocer lo que merecen y construir relaciones sanas sin perder su identidad — trabajando autoestima, propósito, comunicación familiar y noviazgos conscientes.</p>
+      <a href="#contacto" class="btn btn-primary">Quiero Inscribirme</a>
+    </div>
+    <div class="feature-media">
+      <div class="ph ph--book">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h11v16H6a2 2 0 0 0 0 4h13"/></svg>
+        <span class="ph-label">Portada del libro<br><small>Amar sin Perderme</small></span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ MORE PROGRAMS ============ -->
+<section class="more">
+  <div class="wrap">
+    <div class="more-head">
+      <div class="eyebrow"><span class="vinculo vinculo-mini"><svg width="16" height="12" viewBox="0 0 26 20"><circle cx="10" cy="10" r="8.6"/><circle cx="16" cy="10" r="8.6"/></svg></span>Más programas</div>
+      <h2>Más Formas de Trabajar Juntos</h2>
+    </div>
+    <div class="more-grid">
+      <div class="more-card">
+        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <h4>Reto Exprés</h4>
+        <p>6 semanas de pequeños cambios diarios para reconectar con tu hijo.</p>
+        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="more-card">
+        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        <h4>Taller Exprés</h4>
+        <p>90 minutos para aprender a hablar sin gritar y conectar sin chocar.</p>
+        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="more-card">
+        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.6-9.5-9.1C1 8.6 2.6 5 6.2 5 8.3 5 10 6.3 12 8.7 14 6.3 15.7 5 17.8 5c3.6 0 5.2 3.6 3.7 6.9C19 16.4 12 21 12 21z"/></svg>
+        <h4>Autoestima Adolescente</h4>
+        <p>Acompañamiento para padres que quieren apoyar la autoestima de sus hijos desde casa.</p>
+        <a href="/services.html#adolescentes" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="more-card">
+        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <h4>Sesiones para Padres</h4>
+        <p>Asesoría individual en casos específicos: divorcio, rebeldía, baja autoestima, desconexión.</p>
+        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="more-card">
+        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M15.5 20v-.7a5 5 0 0 0-2.3-4.2"/></svg>
+        <h4>Sesiones para Adolescentes</h4>
+        <p>Un espacio seguro para orientar y acompañar a tu hijo/a: ansiedad, presión social, noviazgo y más.</p>
+        <a href="/services.html#adolescentes" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section class="blog" id="blog">
+  <div class="wrap blog-inner">
+    <div class="blog-side">
+      <div class="ph ph--phone" style="border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.6);margin-bottom:28px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+        <span class="ph-label">Vista previa<br><small>del blog en el celular</small></span>
+      </div>
+      <span class="eyebrow">El blog</span>
+      <h2>Lo Último del Blog</h2>
+      <p>Ideas, herramientas y reflexiones para acompañar a tu hijo adolescente — directo desde el blog de Pienso Grande.</p>
+      <div class="social-row">
+        <a href="https://www.facebook.com/profile.php?id=100013661460289" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.instagram.com/piensogrande/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        <a href="https://www.linkedin.com/in/rosina-pe%C3%B1aranda/" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5.001zM3 9h4v12H3V9zm6.5 0h3.8v1.7h.05c.53-.97 1.83-2 3.76-2 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.9c0-1.4-.03-3.2-1.96-3.2-1.96 0-2.26 1.5-2.26 3.1V21h-4V9z"/></svg></a>
+        <a href="https://x.com/piensogrande" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h4.3l4 5.4L16 3h4.7l-6.8 8.6L21 21h-4.3l-4.4-5.9L7 21H2.3l7.2-9.1L3 3z"/></svg></a>
+        <a href="https://youtube.com/channel/UChA-Ra7jZxVQ4nC7sm9aSxw" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C18 5 12 5 12 5s-6 0-7.8.5c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8C6 19 12 19 12 19s6 0 7.8-.5c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7zM10 15V9l5.2 3-5.2 3z"/></svg></a>
+        <a href="https://www.tiktok.com/@piensogrande" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.4 2.2 2 3.8 4.5 4v3a7 7 0 0 1-4.5-1.6V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v3a2.5 2.5 0 1 0 1.6 2.4V3h3z"/></svg></a>
+      </div>
+    </div>
     <div>
-      <div class="pillars-eyebrow">Lo que hacemos</div>
-      <h2>Cinco compromisos con tu familia.</h2>
+      <div class="post-list">
+        <div class="post">
+          <div class="ph ph--square post-thumb" style="border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+          </div>
+          <div>
+            <div class="post-date">Ago 4, 2022</div>
+            <div class="post-title">Hijos adolescentes: 15 maneras de mejorar la relación</div>
+            <p class="post-excerpt">Establecer una buena relación con los hijos adolescentes es todo un reto que suele ser arduo y agotador...</p>
+            <div class="tag-row"><span class="tag" style="background:#d4684b;">Comunicación</span><span class="tag" style="background:#1a587f;">Familia</span></div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="ph ph--square post-thumb" style="border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+          </div>
+          <div>
+            <div class="post-date">Ago 15, 2022</div>
+            <div class="post-title">Hijos adolescentes: 15 maneras de mejorar la relación 2</div>
+            <p class="post-excerpt">En esta parte 2 continuamos hablando sobre cómo lograr conectarnos a nivel emocional con nuestros hijos...</p>
+            <div class="tag-row"><span class="tag" style="background:#d4684b;">Comunicación</span><span class="tag" style="background:#1a587f;">Familia</span></div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="ph ph--square post-thumb" style="border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+          </div>
+          <div>
+            <div class="post-date">Abr 13, 2021</div>
+            <div class="post-title">Las emociones y la comunicación: logra una comunicación de éxito</div>
+            <p class="post-excerpt">Cuando queremos decir algo, pocas veces nos detenemos a pensar en el efecto que tendrán nuestras palabras...</p>
+            <div class="tag-row"><span class="tag" style="background:#d4684b;">Comunicación</span><span class="tag" style="background:#e39b48;">Emociones</span></div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="ph ph--square post-thumb" style="border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+          </div>
+          <div>
+            <div class="post-date">Dic 29, 2020</div>
+            <div class="post-title">Los adolescentes frente a la pandemia: retos para el 2021</div>
+            <p class="post-excerpt">La adolescencia es una etapa cargada de grandes cambios físicos y psicológicos, y la pandemia sumó otros más...</p>
+            <div class="tag-row"><span class="tag" style="background:#987a01;">Adolescencia</span><span class="tag" style="background:#1a587f;">Autoestima</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-foot">
+        <a href="#" class="btn btn-light">Ver Todas las Entradas</a>
+      </div>
     </div>
-    <p>Cada servicio que ofrecemos responde a una necesidad real que observamos en el trabajo cotidiano con adolescentes, padres y cuidadores a lo largo de los años.</p>
   </div>
-  <div class="pillars-grid">
-    <div class="pillar-card">
-      <div class="pillar-dot" style="background: var(--amber);"></div>
-      <div class="pillar-num">01</div>
-      <h4>Dinámica familiar</h4>
-      <p>Espacios de educación para padres e hijos sobre los temas que afectan la convivencia y la comunicación familiar.</p>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testi">
+  <div class="wrap">
+    <div class="testi-head">
+      <div class="eyebrow"><span class="vinculo vinculo-mini"><svg width="16" height="12" viewBox="0 0 26 20"><circle cx="10" cy="10" r="8.6"/><circle cx="16" cy="10" r="8.6"/></svg></span>Historias reales</div>
+      <h2>¿Serás la Próxima Historia de Éxito?</h2>
     </div>
-    <div class="pillar-card">
-      <div class="pillar-dot" style="background: var(--coral);"></div>
-      <div class="pillar-num">02</div>
-      <h4>Desarrollo adolescente</h4>
-      <p>Comprensión profunda de los cambios biológicos, psicológicos y sociales que ocurren en la adolescencia.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-dot" style="background: var(--teal-dark);"></div>
-      <div class="pillar-num">03</div>
-      <h4>Autoestima y liderazgo</h4>
-      <p>Formación que ayuda a los adolescentes a construir una autoestima positiva y un liderazgo auténtico.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-dot" style="background: var(--amber-dark);"></div>
-      <div class="pillar-num">04</div>
-      <h4>Coaching con propósito</h4>
-      <p>Técnicas de coaching aplicadas para que padres y adolescentes puedan alcanzar sus metas con claridad.</p>
-    </div>
-    <div class="pillar-card">
-      <div class="pillar-dot" style="background: #6BAA75;"></div>
-      <div class="pillar-num">05</div>
-      <h4>Servicios online</h4>
-      <p>Coaching y psicología disponibles en línea para padres, adolescentes y jóvenes, desde cualquier lugar.</p>
-    </div>
-    <div class="pillar-card" style="background: var(--cream);">
-      <p style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--text-dark); line-height:1.4;">
-        "Cuando piensas grande, tus sueños pasan de ser pensamientos a hechos."
-      </p>
+    <div class="testi-wrap">
+      <div class="ph ph--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
+        <span class="ph-label">Foto de familia<br><small>cliente real (con permiso)</small></span>
+      </div>
+      <div class="testi-quote">
+        <div class="testi-slide active">
+          <p class="testi-text">"[Espacio para el testimonio de una madre que vivió el proceso de Más Unión, Menos Conflictos.]"</p>
+          <div class="testi-name">Nombre de la madre o padre</div>
+          <div class="testi-role">Programa: Curso Más Unión, Menos Conflictos</div>
+        </div>
+        <div class="testi-slide">
+          <p class="testi-text">"[Espacio para el testimonio de un padre que tomó la Mentoría Vínculo Seguro.]"</p>
+          <div class="testi-name">Nombre de la madre o padre</div>
+          <div class="testi-role">Programa: Mentoría Método Vínculo Seguro</div>
+        </div>
+        <div class="testi-slide">
+          <p class="testi-text">"[Espacio para el testimonio de una adolescente que tomó Amar sin Perderme.]"</p>
+          <div class="testi-name">Nombre de la o el adolescente</div>
+          <div class="testi-role">Programa: Curso Amar sin Perderme</div>
+        </div>
+        <div class="testi-nav">
+          <button class="testi-arrow" id="testiPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button class="testi-arrow" id="testiNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-  <!-- FINAL CTA -->
-  <div id="cta"></div>
+<!-- ============ FOOTER ============ -->
 
-    <!-- Footer -->
-  <footer id="footer"></footer>
+  <footer class="footer" id="footer"></footer>
+
+
+<script>
+  // soy rosina read more
+  const soyExtra = document.getElementById('soyExtra');
+  const soyToggle = document.getElementById('soyToggle');
+  soyToggle.addEventListener('click', () => {
+    const open = soyExtra.classList.toggle('open');
+    soyToggle.innerHTML = open
+      ? 'Leer menos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+      : 'Conoce mi historia completa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  });
+
+  // testimonial carousel
+  const slides = document.querySelectorAll('.testi-slide');
+  let testiIndex = 0;
+  function showSlide(i){
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  }
+  document.getElementById('testiNext').addEventListener('click', () => {
+    testiIndex = (testiIndex + 1) % slides.length;
+    showSlide(testiIndex);
+  });
+  document.getElementById('testiPrev').addEventListener('click', () => {
+    testiIndex = (testiIndex - 1 + slides.length) % slides.length;
+    showSlide(testiIndex);
+  });
+
+  // scroll reveal
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.transition = 'opacity .7s ease, transform .7s ease';
+          e.target.style.opacity = 1;
+          e.target.style.transform = 'translateY(0)';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.feature-inner, .soy-inner, .reto-inner, .optin-inner, .more-card, .post, .gallery-row > div').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(24px)';
+      observer.observe(el);
+    });
+  }
+</script>
 
 </body>
-
-<script src="./functions/header.js"></script>
-<script src="./functions/footer.js"></script>
+  <script src="./functions/header.js"></script>
+  <script src="./functions/footer.js"></script>
 </html>
