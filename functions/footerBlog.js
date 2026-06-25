@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     footer.innerHTML = `
     <div class="footer-grid">
       <div>
-        <img src='images/home/log-pienso.png' alt='footer-logo' style='width: 130px; margin-bottoM' />
+        <img src='../images/home/log-pienso.png' alt='footer-logo' style='width: 130px; margin-bottoM' />
       </div>
       <div>
         <div class="footer-col-title">Explorar</div>
