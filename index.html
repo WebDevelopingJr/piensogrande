@@ -757,11 +757,11 @@
 
     .blog-row {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 140px 1fr auto;
       align-items: center;
       gap: 2rem;
 
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       text-decoration: none;
       color: inherit;
 
@@ -771,6 +771,25 @@
 
     .blog-row:first-child {
       border-top: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .blog-thumb {
+      width: 140px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .blog-row-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--dark);
+      transition: color 0.25s;
+    }
+
+    .blog-row:hover .blog-row-title {
+      color: var(--coral);
     }
 
     .blog-row:hover {
@@ -909,6 +928,16 @@
       .cta-section { padding: 5rem 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bar { flex-direction: column; gap: 0.8rem; text-align: center; }
+      .blog-row { grid-template-columns: 90px 1fr; gap: 1rem; }
+
+      .blog-play {
+        display: none;
+      }
+    
+      .blog-thumb {
+        width: 90px;
+        height: 70px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -958,8 +987,8 @@
     <div class="hero-left">
       <span class="eyebrow hero-eyebrow">Psicóloga · Life Coach · Miami, FL</span>
       <h1 class="hero-title">
-        Creando un <em>futuro</em><br>
-        brillante
+        Crea el <em>vinculo</em><br>
+        seguro con tu hijo
       </h1>
       <p class="hero-sub">
         Acompaño a padres y adolescentes a reconectarse, comunicarse mejor y construir relaciones sanas desde el amor propio, la fe y el propósito.
@@ -1003,12 +1032,12 @@
     <div class="intro-creds">
       <span class="cred-tag">Maestría en Psicología Clínica</span>
       <span class="cred-tag">Life Coach Certificada</span>
-      <span class="cred-tag">Maestria en Sexología</span>
+      <span class="cred-tag">Especialización en Sexología</span>
       <span class="cred-tag">PNL · Coaching</span>
       <span class="cred-tag">Fundadora de Pienso Grande®</span>
     </div>
 
-    <a href="/piensogrande/aboutUs.html" class="btn btn-coral">Lee mi historia completa</a>
+    <a href="/piensogrande/aboutus.html" class="btn btn-coral">Lee mi historia completa</a>
   </div>
 
 </section>
@@ -1257,11 +1286,14 @@
 
       const displayPosts = newsPosts.slice(0, 5);
 
-      list.innerHTML = displayPosts.map((post, idx) => {
+      list.innerHTML = displayPosts.map((post) => {
         const title = toSentenceCase(post.nameNew);
 
         return `
           <a href="${post.linkPost}" class="blog-row fade-up">
+            
+            <img src="${post.newImg}" alt="${title}" class="blog-thumb">
+
             <div class="blog-row-title">${title}</div>
 
             <div class="blog-play">
@@ -1269,12 +1301,14 @@
                 <path d="M5 3L14 9L5 15V3Z" fill="black"/>
               </svg>
             </div>
+
           </a>
         `;
       }).join('');
 
       list.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     }
+
     // ─── INTERSECTION OBSERVER (SCROLL ANIMATIONS) ───────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
