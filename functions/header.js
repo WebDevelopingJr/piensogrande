@@ -47,7 +47,7 @@ window.addEventListener("scroll", () => {
 hamburger.addEventListener("click", () => {
   const isOpen = hamburger.classList.toggle("open");
   mobileMenu.classList.toggle("open", isOpen);
-  document.body.style.overflow = isOpen ? "hidden" : "";
+  document.body.style.overflow = isOpen ? "hidden" : "" ;
 });
 
 document.querySelectorAll(".mobile-link").forEach(link => {
