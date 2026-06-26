@@ -263,18 +263,36 @@
     border-radius: 20px;
   }
   /* ---------- PERSONALIZADO ---------- */
-  .personal-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:32px;
-  }
-  .personal-card{
-    background:var(--white);
-    border:2px solid var(--peach);
-    border-radius:var(--radius-lg);
-    padding:42px;
-  }
-  .personal-card h3{font-size:24px; margin-bottom:14px;}
+.personal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.personal-card {
+  background: var(--white);
+  border: 2px solid var(--peach);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 0; /* importante, quitamos el padding del card */
+}
+  .personal-card {
+  /* agrega esto al bloque que ya tienes */
+  padding: 0;          /* quitamos el padding general */
+  overflow: hidden;    /* para que la imagen respete el border-radius */
+}
+
+.personal-card__img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  display: block;
+}
+
+/* movemos el padding al contenido interno */
+.personal-card__body {
+  padding: 32px 42px 42px;
+}
+  .personal-card h3{font-size:26px; margin-bottom:14px;}
   .personal-card p{font-size:15.5px; color:#4a4540; margin-bottom:24px;}
 
   /* ---------- FINAL CTA ---------- */
@@ -429,7 +447,6 @@
         <a href="/piensogrande/contact.html" class="btn btn-navy">Ver próximas fechas</a>
       </div>
     </div>
-
     <div class="service">
       <div class="service-media media-5"><img src="./images/home/amor-materno.png" alt="conforting"></div>
       <div class="service-content">
@@ -492,14 +509,20 @@
     </div>
     <div class="personal-grid">
       <div class="personal-card">
-        <h3>Sesiones individuales para padres</h3>
-        <p>Asesoría en casos específicos —divorcio, rebeldía, baja autoestima, desconexión emocional— y orientación puntual sobre normas, límites, disciplina, uso de redes o sexualidad.</p>
-        <a href="/piensogrande/contact.html" class="btn btn-terracotta">Agendar una sesión para mí</a>
+        <img src="./images/home/happy-couple.png" alt="Sesiones para padres" class="personal-card__img">
+        <div class="personal-card__body">
+          <h3>Sesiones individuales para padres</h3>
+          <p>Asesoría en casos específicos —divorcio, rebeldía, baja autoestima, desconexión emocional— y orientación puntual sobre normas, límites, disciplina, uso de redes o sexualidad.</p>
+          <a href="/piensogrande/contact.html" class="btn btn-terracotta">Agendar una sesión para mí</a>
+        </div>
       </div>
       <div class="personal-card">
-        <h3>Sesiones individuales para adolescentes</h3>
-        <p>Un espacio seguro para orientar, motivar y acompañar a tu hijo/a frente a la inseguridad, ansiedad, presión social, orientación vocacional, noviazgo o conflictos familiares.</p>
-        <a href="/piensogrande/contact.html" class="btn btn-navy">Agendar una sesión para mi hijo/a</a>
+        <img src="./images/home/taller-jovenes.png" alt="Sesiones para adolescentes" class="personal-card__img">
+        <div class="personal-card__body">
+          <h3>Sesiones individuales para adolescentes</h3>
+          <p>Un espacio seguro para orientar, motivar y acompañar a tu hijo/a frente a la inseguridad, ansiedad, presión social, orientación vocacional, noviazgo o conflictos familiares.</p>
+          <a href="/piensogrande/contact.html" class="btn btn-navy">Agendar una sesión para mi hijo/a</a>
+        </div>
       </div>
     </div>
   </div>
