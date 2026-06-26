@@ -2,7 +2,7 @@ let imageLink = 'log-pienso-horiz-bco.png';
 
 document.getElementById("site-header").innerHTML = `
   <nav class="nav" id="mainNav">
-  <a href="/piensogrande" class="nav-logo"><img id="logoImg" src='../images/home/${imageLink}' alt='logo-pienso' /></a>
+  <a href="/piensogrande" class="nav-logo"><img id="logoImg" src='images/home/${imageLink}' alt='logo-pienso' /></a>
 
     <ul class="nav-links">
       <li><a href="/piensogrande/aboutUs.html">Conócenos</a></li>
@@ -47,7 +47,7 @@ window.addEventListener("scroll", () => {
 hamburger.addEventListener("click", () => {
   const isOpen = hamburger.classList.toggle("open");
   mobileMenu.classList.toggle("open", isOpen);
-  document.body.style.overflow = isOpen ? "hidden" : "" ;
+  document.body.style.overflow = isOpen ? "hidden" : "";
 });
 
 document.querySelectorAll(".mobile-link").forEach(link => {
