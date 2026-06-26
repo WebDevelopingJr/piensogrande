@@ -245,7 +245,62 @@
     background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:28px 22px;
     display:flex;flex-direction:column;gap:14px;transition:transform .25s ease, box-shadow .25s ease;
   }
-  .more-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .more-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+
+  .more-card{
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    transition: all .3s ease;
+    min-height: 460px;
+  }
+
+  .more-card:hover{
+    transform: translateY(-6px);
+  }
+
+  .more-image{
+  width:100%;
+  height:240px;
+  overflow:hidden;
+}
+
+.more-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition: transform .4s ease;
+  border-radius: 15px;
+}
+
+.more-card:hover .more-image img{
+  transform:scale(1.06);
+}
+
+.more-content{
+  padding: 28px 0;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.more-card h4{
+  font-size:24px;
+  font-weight:600;
+  color:var(--navy);
+}
+
+.more-card p{
+  font-size:15px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  flex:1;
+}
   .more-icon{width:38px;height:38px;color:var(--terracotta);}
   .more-card h4{font-size:17px;font-weight:600;}
   .more-card p{font-size:13.5px;color:var(--ink-soft);flex:1;}
@@ -312,6 +367,9 @@
     .foot-grid{grid-template-columns:1fr 1fr;gap:36px;}
     .nav-links{display:none;}
     .burger{display:block;}
+      .more-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
   }
   @media (max-width: 620px){
     .wrap{padding:0 20px;}
@@ -322,6 +380,9 @@
     .hero-grid{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);}
     .post{grid-template-columns:1fr;}
     .post-thumb{display:none;}
+      .more-grid{
+    grid-template-columns:1fr;
+  }
     .form-row{flex-direction:column;}
     .form-row input{flex:1 1 auto;}
   }
@@ -508,36 +569,61 @@
       <h2>Más Formas de Trabajar Juntos</h2>
     </div>
     <div class="more-grid">
-      <div class="more-card">
-        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    <div class="more-card">
+      <div class="more-image">
+        <img src="./images/home/family-happy.jpg" alt="Reto Exprés">
+      </div>
+      <div class="more-content">
         <h4>Reto Exprés</h4>
         <p>6 semanas de pequeños cambios diarios para reconectar con tu hijo.</p>
-        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/services.html#padres" class="link-arrow">Más información</a>
       </div>
-      <div class="more-card">
-        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+    </div>
+
+    <div class="more-card">
+      <div class="more-image">
+        <img src="./images/home/family-talking.jpg" alt="Taller Exprés">
+      </div>
+      <div class="more-content">
         <h4>Taller Exprés</h4>
         <p>90 minutos para aprender a hablar sin gritar y conectar sin chocar.</p>
-        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/services.html#padres" class="link-arrow">Más información</a>
       </div>
-      <div class="more-card">
-        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.6-9.5-9.1C1 8.6 2.6 5 6.2 5 8.3 5 10 6.3 12 8.7 14 6.3 15.7 5 17.8 5c3.6 0 5.2 3.6 3.7 6.9C19 16.4 12 21 12 21z"/></svg>
+    </div>
+
+    <div class="more-card">
+      <div class="more-image">
+        <img src="./images/home/confident-guy.jpg" alt="Autoestima Adolescente">
+      </div>
+      <div class="more-content">
         <h4>Autoestima Adolescente</h4>
         <p>Acompañamiento para padres que quieren apoyar la autoestima de sus hijos desde casa.</p>
-        <a href="/services.html#adolescentes" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/services.html#adolescentes" class="link-arrow">Más información</a>
       </div>
-      <div class="more-card">
-        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+    </div>
+
+    <div class="more-card">
+      <div class="more-image">
+        <img src="./images/home/couple-talking.jpg" alt="Sesiones para Padres">
+      </div>
+      <div class="more-content">
         <h4>Sesiones para Padres</h4>
         <p>Asesoría individual en casos específicos: divorcio, rebeldía, baja autoestima, desconexión.</p>
-        <a href="/services.html#padres" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/services.html#padres" class="link-arrow">Más información</a>
       </div>
-      <div class="more-card">
-        <svg class="more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M15.5 20v-.7a5 5 0 0 0-2.3-4.2"/></svg>
+    </div>
+
+    <div class="more-card">
+      <div class="more-image">
+        <img src="./images/home/teens-talking.jpg" alt="Sesiones para Adolescentes">
+      </div>
+      <div class="more-content">
         <h4>Sesiones para Adolescentes</h4>
         <p>Un espacio seguro para orientar y acompañar a tu hijo/a: ansiedad, presión social, noviazgo y más.</p>
-        <a href="/services.html#adolescentes" class="link-arrow">Más información<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="/services.html#adolescentes" class="link-arrow">Más información</a>
       </div>
+    </div>
+
     </div>
   </div>
 </section>
