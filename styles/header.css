@@ -42,13 +42,14 @@
   .nav.scrolled .nav-links a:hover { color: var(--coral); }
 
   .nav-cta {
-    background: var(--coral) !important;
+    background: #FF8C75;
     color: #fff !important;
+    border: solid #ff7e65;
     padding: 0.55rem 1.3rem;
     border-radius: 100px;
     transition: background 0.2s, transform 0.2s !important;
   }
-  .nav-cta:hover { background: var(--coral-dark) !important; transform: translateY(-1px); }
+  .nav-cta:hover { background: #ff7a60 !important; transform: translateY(-1px); }
 
   .nav-hamburger {
     display: none;
