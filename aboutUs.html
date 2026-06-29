@@ -18,7 +18,7 @@
     --ink-soft:#5A4F44;
     --navy:#1A587F;
     --navy-deep:#11293A;
-    --terracotta:#D4684B;
+    --terracotta:#EE4010;
     --gold:#E39B48;
     --olive:#8B6F12;
     --white:#FFFFFF;
@@ -131,13 +131,12 @@
     padding:120px 24px 90px;
   }
   .hero-grid{
-    position:absolute;inset:0;display:grid;
-    grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);
+    position:absolute;inset:0;
     gap:3px;z-index:0;
   }
   .hero::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(17,41,58,0.55) 0%, rgba(17,41,58,0.82) 60%, rgba(17,41,58,0.95) 100%);
+    background:linear-gradient(167deg, rgb(17 41 58 / 48%) 0%, rgb(17 41 58 / 39%) 60%, rgb(17 41 58 / 30%) 100%);
     z-index:1;
   }
   .hero-content{position:relative;z-index:2;max-width:780px;}
@@ -403,11 +402,7 @@
 <!-- ============ HERO ============ -->
 <div class="hero" id="inicio">
   <div class="hero-grid">
-    <!-- 12 espacios para fotos del collage del héroe (familias, talleres, charlas) -->
-    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
-    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
-    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
-    <div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div><div class="ph ph--hero-tile"></div>
+    <img src="./images/home/banner-design.png" alt="family-happu">
   </div>
   <div class="hero-content">
     <span class="hero-vinculo vinculo">
@@ -423,13 +418,7 @@
 <section class="reto" id="reto">
   <div class="wrap reto-inner">
     <div class="reto-mock">
-      <div class="reto-badge">
-        <div class="reto-badge-text">
-          <span class="top">Únete al</span>
-          <span class="mid">RETO<br>EXPRÉS</span>
-          <span class="bot">6 Semanas</span>
-        </div>
-      </div>
+      <img src="./images/home/mother-w-daudgh.png" alt="about" style="border-radius: 15px;">
       <p class="reto-screen-label">Vista del reto dentro del portal de Pienso Grande</p>
     </div>
     <div class="reto-copy">
