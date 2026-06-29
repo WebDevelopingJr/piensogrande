@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="footer-bar">
       <span class="footer-copy">© 2026 Rosina Peñaranda, Psicologa. All rights reserved.</span>
-      <span class="footer-copy" style="color:#202020;display: flex;gap: 20px"><a href='/terms.html'>Terms and services</a> <a href='/privacy.html'>Privacy policy</a></span>
+      <span class="footer-copy" style="color:#ffff;display: flex;gap: 20px"><a href='/terms.html'>Terms and services</a> <a href='/privacy.html'>Privacy policy</a></span>
     </div>
     `;
 });
