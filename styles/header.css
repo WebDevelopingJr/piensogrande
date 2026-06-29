@@ -42,9 +42,9 @@
   .nav.scrolled .nav-links a:hover { color: var(--coral); }
 
   .nav-cta {
-    background: #FF8C75;
+    background: #EE4010;
     color: #fff !important;
-    border: solid #ff7e65;
+    border: solid #EE4010;
     padding: 0.55rem 1.3rem;
     border-radius: 100px;
     transition: background 0.2s, transform 0.2s !important;
